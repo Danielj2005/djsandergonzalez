@@ -3,11 +3,12 @@
 	/*----------  
 	Ruta o dominio del servidor
 	----------*/
-	const SERVERURL="http://localhost/danikatshop/";
+	const SERVERURL="http://localhost/djsandergonzalez/";
 	/*----------  
 	Nombre de la empresa o compañia
 	----------*/
-	const COMPANY="DanikatShop";
+	const COMPANY="DJ Sander González";
+	const TITTLE="Sander González | DJ & Content Creator";
 	const SLOGAN="Todo lo que buscas en un solo lugar";
 
 	/*----------  Idioma - Language
@@ -22,14 +23,13 @@
 	const PASSWORD="";
 
 	/*----------  Redes sociales  ----------*/
-	const FACEBOOK="";
-	const INSTAGRAM="";
-	const WHATSAPP="DANIKATSHOP";
+	const FACEBOOK="djsandergonzalez";
+	const INSTAGRAM="djsandergonzalez";
+	const WHATSAPP="djsandergonzalez";
 
 
 	/*----------  Direccion  ----------*/
-	const COUNTRY="Venezuela";
-	const ADDRESS="Tinaquillo, Estado Cajedes, Venezuela.";
+	const COUNTRY="Argentina";
 
 
 	/*----------  Marcador de campos obligatorios  ----------*/
@@ -37,11 +37,4 @@
 
 
 	/*----------  Zona horaria  ----------*/
-	date_default_timezone_set("America/Caracas");
-
-	/*
-		Configuración de zona horaria de tu país, para más información visita
-		
-		http://php.net/manual/es/function.date-default-timezone-set.php
-		http://php.net/manual/es/timezones.php
-	*/
+	date_default_timezone_set("Argentina/Buenos_Aires");

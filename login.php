@@ -3,6 +3,7 @@ session_start();
 
 $_SESSION["intentos_sesion"] = 1;
 
+include_once "./config/APP.php"; // se incluye el model principal
 include_once "./model/mainModel.php"; // se incluye el model principal
 
 ?>
@@ -10,72 +11,44 @@ include_once "./model/mainModel.php"; // se incluye el model principal
 <html lang="es" class="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta content="E-comerce catálogo de productos" name="description">
-    <meta content="E-comerce, catálogo de productos, ventas, pedidos, whatsapp" name="keywords">
-    <meta content="Daniel Barrueta" name="author">
-
-    <title>DanikatShop - Todo lo que buscas en un solo lugar </title>
-
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        slate: { 950: '#020617', },
-                        purple: { 400: '#c084fc', 500: '#a855f7', 600: '#9333ea', },
-                        fuchsia: { 500: '#d946ef', 600: '#c026d3', 700: '#a21caf', },
-                    },
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], },
-                }
-            }
-        }
-    </script>
-
+    <!-- meta tags -->
+    <?php require_once './view/inc/login/meta.php'; ?>
+    
+    <!-- tittle  -->
+    <title><?= TITTLE ?></title>
     <!-- Favicons -->
     <link href="./view/img/logo.jpeg" rel="shortcut icon" type="image/x-icon">
-
-    <link href="./view/css/app.css" rel="stylesheet">
-    <link href="./view/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./view/css/bootstrap-icons.css" rel="stylesheet">
-    <link href="./view/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="./view/css/sweetalert2.min.css" rel="stylesheet">
+    
+    <!-- css styles -->
+    <?php require_once './view/inc/login/css.php'; ?>
 </head>
 
-<body id="" class="font-sans antialiased brand-bg" >
-	<nav class="top-0 z-40 bg-slate-950 border-b border-purple-900/20 p-4">
-        <div class="max-w-7xl mx-auto d-flex flex-col flex-md-row gap-4 justify-content-between align-items-center">
-            <a href="./" class=" text-center md:text-left">
-                <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-fuchsia-500 bg-clip-text text-transparent">DanikatShop</h1>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Todo lo que buscas en un solo lugar</p>
+<body id="" class="font-sans antialiased" >
+    <img class="absolute bg-cover bg-center opacity-20" src="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?q=80&w=2076" alt="wallpaper de VENTOI">
+
+	<nav class="top-0 z-40 bg-slate-950 border-b border-purple-900/20 p-2 relative">
+        <div class="max-w-7xl mx-auto d-flex flex-col flex-md-row gap-3 justify-content-between align-items-center">
+            <a href="./" class="text-center md:text-left">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"><?= COMPANY ?></h1>
+                <p class="d-none text-[10px] text-slate-500 uppercase tracking-widest">Todo lo que buscas en un solo lugar</p>
             </a>
 
             <div class="flex gap-4 items-center">
-                <a href="./index.php" class="d-flex align-items-center text-slate-400 hover:text-purple-500 transition">
+                <a href="./catalogo.php" class="d-flex align-items-center text-slate-400 hover:text-cyan-500 transition">
                     <i class="fs-md-2 bi bi-house-fill me-3"></i>Volver al Catálogo
                 </a> 
             </div>
         </div>
     </nav>
 
-    <div id="app" class=" min-h-screen">
-    
-        <main class="max-w-7xl mx-auto p-6">
+    <div id="app" class="min-h-screen ">
+
+        <main class="p-3 relative d-flex items-center justify-center text-center">
             
-            <div class="row align-items-center justify-content-center p-4">
-                <form id="login" method="POST" action="./controller/login.php" data-type-form="load" autocomplete="off" class="SendFormAjax text-start bg-[#020617] border border-slate-800 p-3 rounded-5 col-12 col-md-4 shadow-2xl">
-                    
-                    <div class="text-center mb-4">
-                        <h2 class="text-2xl font-bold text-center my-8 bg-gradient-to-r from-purple-400 to-fuchsia-500 bg-clip-text text-transparent">Acceso Administrativo</h2>
-                    </div>
-        
-                    
+            <div class="bg-[#020617] border border-slate-800 p-3 rounded-2xl w-md shadow-cyan-500 shadow-2xl">
+                <h3 class="font-sans text-md font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">ACCESO ADMINISTRATIVO</h3>
+                <form id="login" method="POST" action="./controller/login.php" data-type-form="load" autocomplete="off" class="SendFormAjax text-start ">
+
                     <div class="text-start mb-3" data-bs-theme="dark">
                         <label for="user" class="form-label fw-bold">Correo Electrónico &nbsp;<span style="color:#f00; font-size: 1.5rem;">*</span></label>
                         <div class="input-group shadow-sm">
@@ -102,10 +75,10 @@ include_once "./model/mainModel.php"; // se incluye el model principal
                         <p class="w-full text-slate-200 mt-4 text-sm">Los campos con  <span style="color:#f00; font-size: 1rem;">*</span> son obligatorios.</p>
                     </div>
 
-                    <button class="mb-4 w-full bg-purple-600 p-2 rounded-2xl font-bold hover:bg-purple-900 transition shadow-lg shadow-purple-500/20">Entrar</button>
+                    <button class="mb-2 w-full bg-blue-600 p-2 rounded-2xl font-bold hover:bg-blue-900 transition shadow-lg shadow-blue-500/20">Entrar</button>
                     
-                    <div class="text-center mb-4">
-                        <a href="./" class="btn btn-outline-secondary w-full text-slate-200 mt-4 text-sm">Volver al catálogo</a>
+                    <div class="text-center mb-2">
+                        <a href="./catalogo.php" class="btn btn-outline-secondary w-full text-slate-200 mt-4 text-sm">Volver al catálogo</a>
                     </div>
                 </form>
             </div>

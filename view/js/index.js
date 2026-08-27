@@ -154,7 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (document.getElementById('loader')) {
         setTimeout(() => {
-            document.getElementById('loader').style.display = 'none';
+            document.getElementById('loader').classList.add('d-flex');
+            document.getElementById('loader').classList.add('d-none');
+
+
             if (document.getElementById('app')) {
                 document.getElementById('app').style.display = 'block';
             }
