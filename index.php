@@ -54,57 +54,10 @@
     
     <header id="header" class="header d-flex flex-column justify-content-center ">
         <i class="header-toggle d-xl-none bi bi-list"></i>
-        <nav id="navmenu" class="navmenu">
-            <ul id="toggleNavbar" class=" backdrop-blur-md bg-gray-700/30 flex flex-column items-center p-0 pt-4 rounded-3xl w-[5rem] delay-200 ease-in-out transition-all">
-                <li class="">
-                    <button id="btnToggleNav" onclick="toggleNavbar()" class="bg-gray-700/80 delay-200 ease-in-out group h-[56px] hover:bg-[#0563bb] mb-2 rounded-full transition-all w-[56px]">
-                        <i class="group-hover:text-white text-blue-400 bi bi-arrow-right navicon"></i>
-                    </button>
-                </li>
-                <li class="">
-                    <a href="#hero" class="active group max-w-14">
-                        <i class="group-hover:text-white bi bi-house navicon"></i>
-                        <span class="opacity-0 text-white">Página Principal</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#about" class="group bg-gray-700/80 rounded-full max-w-14">
-                        <i class="group-hover:text-white text-gray-400 bi bi-person navicon"></i>
-                        <span class="opacity-0 text-white">Sobre mí</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#services" class="group bg-gray-700/80 rounded-full max-w-14">
-                        <i class="group-hover:text-white text-gray-400 bi bi-file-earmark-text navicon"></i>
-                        <span class="opacity-0 text-white">Servicios</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./catalogo.php" class="group bg-gray-700/80 rounded-full max-w-14">
-                        <i class="group-hover:text-white text-gray-400 bi bi-cart navicon"></i>
-                        <span class="opacity-0 text-white">Tienda</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#contact" class="group bg-gray-700/80 rounded-full max-w-14">
-                        <i class="group-hover:text-white text-gray-400 bi bi-envelope navicon"></i>
-                        <span class="opacity-0 text-white">Contacto</span>
-                    </a>
-                </li>
-                <li>
-                    <a id="lightModeButton" class="group bg-gray-700/80 rounded-full max-w-14">
-                        <i class="text-amber-400 bi bi-sun-fill navicon"></i> 
-                        <span class="opacity-0 text-white">light Mode</span>
-                    </a>
-                </li>
-                
-            </ul>
-        </nav>
+
+        <?php require_once './view/inc/portafolio/navBar.php'; ?>
+
     </header>
-
-
-
-
 
     <main id="main" class="main">
 
@@ -140,15 +93,15 @@
         <!-- /Hero Section -->
 
         <!-- About Section -->
-        <?php require_once './view/inc/about_us.php'; ?>
+        <?php require_once './view/inc/portafolio/about_me.php'; ?>
         <!-- /About Section -->
 
         <!-- services Section -->
-        <?php require_once './view/inc/service.php'; ?>
+        <?php require_once './view/inc/portafolio/service.php'; ?>
         <!-- /services Section -->
 
         <!-- Contact Section -->
-        <?php require_once './view/inc/contact.php'; ?>
+        <?php require_once './view/inc/portafolio/contact.php'; ?>
         <!-- /Contact Section -->
 
         <footer id="footer" class="bg-blue-900 dark:bg-gray-900 footer">
@@ -184,69 +137,11 @@
     <script src="./view/js/jquery-3.6.0.min.js"></script>
     <script src="./view/js/bootstrap.bundle.min.js"></script>
     
-    <script src="view/js/sweetalert2.min.js"></script>
-    <script src="view/js/customSwAlert.js"></script>
-    <script src="view/js/renderCatalogo.js"></script>
-    <script src="view/js/catalogo.js"></script>
-    <script src="view/js/carousell.js"></script>
-    <script src="view/js/index.js"></script>
     <script src="view/js/dark_mode.js"></script>
 
     <script src="./view/vendor/aos/aos.js"></script>
     <script src="./view/js/main.js"></script>
-
-
-    
-    <script type="text/javascript">
-        function toggleNavbar() {
-            const ul = document.getElementById('toggleNavbar');
-            const aUl = document.querySelectorAll('#toggleNavbar a');
-            const span_A_Ul = document.querySelectorAll('#toggleNavbar a span');
-            const btnToggleNav = document.querySelector('#btnToggleNav i');
-
-
-            if (ul.classList.contains('w-[5rem]')) {
-                // ajuste de width navmenu
-
-                ul.classList.remove('w-[5rem]');
-                ul.classList.add('w-[15rem]');
-
-                btnToggleNav.classList.remove('bi-arrow-right');
-                btnToggleNav.classList.add('bi-arrow-left');
-
-                aUl.forEach((a) => {
-                    a.classList.remove('max-w-14');
-                    a.classList.add('max-w-[15rem]');
-                });
-                
-                span_A_Ul.forEach((span) => {
-                    span.classList.remove('opacity-0');
-                    span.classList.add('show-span');
-                });
-            }else{
-                
-                btnToggleNav.classList.add('bi-arrow-right');
-                btnToggleNav.classList.remove('bi-arrow-left');
-
-                aUl.forEach((a) => {
-                    a.classList.add('max-w-14');
-                    a.classList.remove('max-w-[15rem]');
-                });
-                
-                span_A_Ul.forEach((span) => {
-                    span.classList.remove('show-span');
-                    span.classList.add('opacity-0');
-                });
-
-                // ajuste de width navmenu
-                ul.classList.add('w-[5rem]');
-                ul.classList.remove('w-[15rem]');
-            }
-
-        }
-
-    </script>
-
+    <script src="./view/js/toggleNavbar.js"></script>
 
 </body>
 
