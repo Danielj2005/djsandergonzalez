@@ -1,31 +1,34 @@
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta content="Sistema de control y registro de préstamos de libros" name="description">
-<meta content="Biblioteca, Gestión de Préstamos, Libros, Administración de Bibliotecas" name="keywords">
-<meta content="Daniel Barrueta" name="author">
 
-<title> <?= COMPANY ?> </title>
 
-<link href="view/img/bg-lg.png" rel="shortcut icon" type="image/x-icon">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/bootstrap-icons.css" rel="stylesheet">
+<link href="./css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
-<style> 
-    .logo{
-        width : 70px !important;
-        height : 70px !important;
+<link href="./css/sweetalert2.min.css" rel="stylesheet">
+
+<link href="./css/toastify.css" rel="stylesheet">
+<link href="./css/carousel.css" rel="stylesheet">
+
+<link href="./css/nice_admin_styles/styles.css" rel="stylesheet">
+
+
+<script>
+    // Se ejecuta al instante antes de pintar el body
+    const savedTheme = localStorage.getItem('theme') ?? 'dark';
+    document.documentElement.classList.add(savedTheme);
+    
+
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    slate: { 950: '#020617', },
+                    purple: { 400: '#c084fc', 500: '#a855f7', 600: '#9333ea', },
+                    fuchsia: { 500: '#d946ef', 600: '#c026d3', 700: '#a21caf', },
+                },
+                fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], },
+            }
+        }
     }
-</style>
-
-<!-- Custom fonts for this template-->
-<link href="<?= SERVERURL; ?>view/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-<link href="<?= SERVERURL; ?>view/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="<?= SERVERURL; ?>view/css/bootstrap.min.css" rel="stylesheet">
-<link href="<?= SERVERURL; ?>view/css/bootstrap-icons.css" rel="stylesheet">
-
-
-<link href="<?= SERVERURL; ?>view/css/sweetalert2.min.css" rel="stylesheet">
-
-<link href="<?= SERVERURL; ?>view/css/indexStyle.css" rel="stylesheet">
+</script>

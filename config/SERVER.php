@@ -2,7 +2,7 @@
 
 /*----------  Datos del servidor  ----------*/
 const SERVER="localhost";
-const DB="danikat_db";
+const DB="djsander";
 const USER="root";
 const PASS="";
 
@@ -14,15 +14,15 @@ const PASS="";
 
 /*----------  Nombre de la empresa o compañia ----------*/
 const PHONE = "5491172041071";
-const COMPANY="DJ Sander González";
-const TITTLE="Sander González | DJ & Content Creator";
-const SLOGAN="Todo lo que buscas en un solo lugar";
+const COMPANY ="DJ Sander González";
+const TITTLE ="Sander González | DJ & Content Creator";
+const SLOGAN ="Todo lo que buscas en un solo lugar";
 
 
 /*----------  Datos de la encriptacion (No modificar) ----------*/
-const METHOD="AES-256-CBC";
+const METHOD ="AES-256-CBC";
 const SECRET_KEY = 'CTS_PRO_2026_SECURITY_99';
-const SECRET_IV='102791';
+const SECRET_IV ='102791';
 
 /*----------  Datos de la conexión PDO (No modificar) ----------*/
 const DBA="mysql:host=".SERVER.";dbname=".DB;

@@ -59,10 +59,12 @@
 <!-- lógica de los modales -->
 <!-- <script src="./js/configModal.js"></script>
 <script src="./js/modal.js"></script> -->
+
 <script src="./js/get_url.js"></script>
 
 <!-- <script src="./js/sweet-alert.min.js"></script> -->
 <script src="./js/sweetalert2.min.js"></script>
+
 <!-- <script src="./js/tiempo_inactividad.js"></script>
 <script src="./js/hiddeInput.js"></script>
 <script src="./js/dolar.js"></script>
@@ -80,7 +82,7 @@
 
 <script type="text/javascript">
     // inicializar la libreria Select2 
-    $('.SelectTwo').select2();
+    // $('.SelectTwo').select2();
 
     // funcion para eliminar un elemento del html
     document.addEventListener('DOMContentLoaded', () => {

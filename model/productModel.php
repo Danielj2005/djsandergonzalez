@@ -141,7 +141,7 @@ class producto_model extends modeloPrincipal {
             $stock = $mostrar["precio"] < 1 ? "secondary" : $stock;
             $stock = $mostrar["precio"] > 1 && $stock ? "success" : $stock;
 
-            ?>
+        ?>
             <tr class="text-center">
                 <td class="text-center"></td>
                 <td class="text-start">

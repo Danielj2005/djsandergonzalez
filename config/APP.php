@@ -37,4 +37,5 @@
 
 
 	/*----------  Zona horaria  ----------*/
-	date_default_timezone_set("Argentina/Buenos_Aires");
+	date_default_timezone_set("America/Caracas");
+	// date_default_timezone_set("Argentina/Buenos_Aires");
