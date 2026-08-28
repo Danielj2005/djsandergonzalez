@@ -103,3 +103,10 @@
         
     });
 </script>
+
+
+<script type="text/javascript" src="js/dolar.js"></script>
+<script type="text/javascript" src="js/productos.js"></script>
+<script type="text/javascript" src="js/carousell.js"></script>
+<script type="text/javascript" src="js/initialApp.js"></script>
+<script type="text/javascript" src="js/editar_producto.js"></script>

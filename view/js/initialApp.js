@@ -4,7 +4,7 @@ function verImagen(url, producto) {
 
     const data = url.split(",");
 
-    DanikatAlert.fire({
+    Swal.fire({
         title: `${producto}`,
         html: getCarrusel(data, i),
         confirmButtonText: 'Cerrar'
@@ -41,8 +41,9 @@ function initCustomSelect() {
         tag.textContent = option.text;
         tag.dataset.value = option.value;
         
-        // Estilo base de la etiqueta (DanikatStyle)
-        tag.className = 'cursor-pointer px-4 py-1 rounded-full border border-purple-500/50 text-slate-300 transition-all hover:bg-purple-500/20';
+        // Estilo base de la etiqueta 
+        // tag.className = 'cursor-pointer px-4 py-1 rounded-full border border-purple-500/50 text-slate-300 transition-all hover:bg-purple-500/20';
+        tag.className = 'btn btn-secondary px-4 py-1 rounded-5';
         
         // Evento al hacer clic
         tag.onclick = () => {
@@ -50,11 +51,11 @@ function initCustomSelect() {
             
             // Alternar estilos visuales
             if (option.selected) {
-                tag.classList.remove('border-purple-500/50', 'text-slate-300');
-                tag.classList.add('bg-purple-600', 'text-white', 'border-purple-600', 'shadow-[0_0_10px_rgba(168,85,247,0.5)]');
+                tag.classList.remove('btn-secondary');
+                tag.classList.add('btn-primary');
             } else {
-                tag.classList.add('border-purple-500/50', 'text-slate-300');
-                tag.classList.remove('bg-purple-600', 'text-white', 'border-purple-600', 'shadow-[0_0_10px_rgba(168,85,247,0.5)]');
+                tag.classList.add('btn-secondary');
+                tag.classList.remove('btn-primary');
             }
         };
         

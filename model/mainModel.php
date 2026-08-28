@@ -42,7 +42,7 @@ class modeloPrincipal {
 
     /*----------- Funcion insertar datos de Base de Datos -----------*/
 
-    public static function InsertSQL($tabla,$campos,$valores) {
+    public static function InsertSQL($tabla, $campos, $valores) {
         if (!$consulta = Self::consultar("INSERT INTO $tabla ($campos) VALUES($valores)")) {
             die("Ha ocurrido un error al guardar los datos");
         }

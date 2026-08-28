@@ -39,7 +39,7 @@
             </ul>
         </li>
 
-        <li class="nav-item position-relative">
+        <li class="nav-item position-relative d-none">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-currency-dollar"></i>
                 <span>Caja / Ventas</span>
@@ -105,7 +105,7 @@
             <a class="nav-link collapsed" href="./mi_perfil.php"> <i class="bi bi-person-fill"></i> <span>Mi Perfil</span> </a>
         </li>
 
-        <li class="nav-item position-relative">
+        <li class="nav-item position-relative d-none">
             <a class="nav-link collapsed" data-bs-target="#setting-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-gear-fill"></i> <span>Configuración General</span> <i class="bi bi-chevron-down ms-auto"></i> </a>
 
             <ul id="setting-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">

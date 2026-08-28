@@ -68,7 +68,7 @@ function SendFormAjax() {
                 return;
             }
 
-            DanikatAlert.fire({
+            Swal.fire({
                 title: title_alerta[`${type_form}`],
                 text: text_alerta[`${type_form}`],
                 icon: type_alerta[`${type_form}`],
@@ -80,7 +80,7 @@ function SendFormAjax() {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // el usuario confirme la acción
-                    DanikatAlert.fire({
+                    Swal.fire({
                         title: "Procesando...",
                         text: "",
                         allowOutsideClick: false,
@@ -114,5 +114,5 @@ function SendFormAjax() {
 }
 
 $(document).ready(function () {
-    // SendFormAjax();
+    SendFormAjax();
 });

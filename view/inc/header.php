@@ -24,6 +24,11 @@
     <ul class="d-flex align-items-center">
 
 
+      <li class="nav-item">
+          <a id="lightModeButton" class="w-full group shadow-md  hover:shadow-cyan-500 bg-gray-700/80 dark:bg-slate-500 transition p-[10px] rounded-full mx-3 cursor-pointer">
+              <i class="bi bi-sun-fill navicon rounded-full text-amber-400"></i> 
+          </a>
+      </li>
       <li class="nav-item dropdown pe-3">
 
         <button class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">

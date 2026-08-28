@@ -72,26 +72,24 @@ class category_model extends modeloPrincipal {
                 <td class="col text-start"><?= $mostrar["nombre"]; ?></td>
                 <td class="col text-start"><?= $mostrar["descripcion"]; ?></td>
                 
-                <?php if (modeloPrincipal::verificar_permisos_requeridos(['m_categoria'])) { ?>
-                    <td scope="row" class="text-center">
-                        <?php 
-                            if ($mostrar["state"] === "1") { ?>
-                                <button class="btn btn-outline-success bi-check-circle" title="state de la categoría"></button>
-                            <?php } else { ?>
-                                
-                                <form 
-                                    action="../controlador/categoria_controller.php" 
-                                    method="post" 
-                                    class="SendFormAjax" 
-                                    data-type-form="update_estate" >
-                                        <input type="hidden" name="modulo" value="inactivo">          
-                                        <input type="hidden" name="UID" value="<?= modeloPrincipal::encryptionId($mostrar["id"]); ?>">
-                                        <button class="btn btn-outline-danger bi-x-circle" title="state de la categoría" type="submit"></button>
-                                </form>
-                            <?php }
-                        ?>
-                    </td>
-                <?php } ?>
+                <td scope="row" class="text-center">
+                    <?php 
+                        if ($mostrar["state"] === "1") { ?>
+                            <button class="btn btn-outline-success bi-check-circle" title="state de la categoría"></button>
+                        <?php } else { ?>
+                            
+                            <form 
+                                action="../controlador/categoria_controller.php" 
+                                method="post" 
+                                class="SendFormAjax" 
+                                data-type-form="update_estate" >
+                                    <input type="hidden" name="modulo" value="inactivo">          
+                                    <input type="hidden" name="UID" value="<?= modeloPrincipal::encryptionId($mostrar["id"]); ?>">
+                                    <button class="btn btn-outline-danger bi-x-circle" title="state de la categoría" type="submit"></button>
+                            </form>
+                        <?php }
+                    ?>
+                </td>
             </tr>
         <?php  } 
     }
@@ -157,14 +155,4 @@ class category_model extends modeloPrincipal {
     }
 
 
-
-    public static function bitacora_modificar_state_categoria ($cambios) {
-        
-        bitacora::bitacora("Modificación exitosa del state de una categoría.",'<p class="mb-3 text-primary-emphasis text-center"><i class="bi bi-exclamation-circle-fill"></i>&nbsp; Se modificó el state de una categoría con la siguiente informacón.</p> 
-            <h4 class="text-center card-title"><b> Información de la categoría </b></h4>
-            <div class="d-flex justify-content-between border-bottom"> <p> Nombre</p> '.$cambios['nombre'].' </div>
-            <div class="d-flex justify-content-between border-bottom"> <p> Descripción</p> '.$cambios['descripcion'].' </div>
-            <div class="d-flex justify-content-between border-bottom"> <p> state</p> '.$cambios['state'].' </div>');
-        
-    }
 }

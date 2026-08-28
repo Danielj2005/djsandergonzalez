@@ -67,18 +67,28 @@ if($modulo === 'Guardar'){
 
     // Se verifica que no se hayan recibido campos vacíos.
     modeloPrincipal::validar_campos_vacios([$producto, $price, $category, $desc]);
-    $price = number_format($price, 2, '.', ',');
+    // $price = number_format($price, 2, '.', ',');
 
     // se valida el campo nombre del producto
     if (modeloPrincipal::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{3,200}", $producto)) {
         alert_model::alerta_simple("¡Ocurrió un error!","El nombre del producto $producto no cumple con el formato establecido","error");
         exit();
     }
-
+    if (modeloPrincipal::verificar_datos("[.\,0-9 ]{1,12}", $price)) {
+        alert_model::alerta_simple("¡Ocurrió un error!","El precio del producto no cumple con el formato establecido","error");
+        exit();
+    }
+    echo "<br>"; 
+    echo $producto; 
+    echo "<br>"; 
+    echo $price; 
+    echo "<br>"; 
+    echo $desc; 
+    echo "<br>"; 
     // se registran los datos del producto
     try {
 
-        $registrar = modeloPrincipal::InsertSQL("productos", "nombre, precio, description, images, image_hash, state, created_at" ,"'$producto', $price, '$desc', '$images_string', '$image_hash_string', 1, NOW()");
+        $registrar = modeloPrincipal::InsertSQL("productos", "nombre, precio, description, images, image_hash, state", "'$producto', $price, '$desc', '$images_string', '$image_hash_string', 1");
 
         if (!$registrar) {
             alert_model::alerta_simple("¡Ocurrió un error!","ocurrio un error al registrar un producto.","error");
@@ -101,7 +111,8 @@ if($modulo === 'Guardar'){
         exit();
     } catch (Exception $e) {
         // alert_model::alert_reg_error();
-        alert_model::alerta_simple("$e","ocurrio un error al registrar las categorías de un producto.","error");
+        echo $e;
+        alert_model::alerta_simple("Ha ocurrido un Error!","ocurrio un error al registrar la información de un producto.","error");
 
         exit();
     }
