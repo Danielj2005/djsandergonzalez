@@ -105,8 +105,10 @@
 </script>
 
 
-<script type="text/javascript" src="js/dolar.js"></script>
+<script type="text/javascript" src="js/dark_mode.js"></script>
+<!-- <script type="text/javascript" src="js/dolar.js"></script> -->
 <script type="text/javascript" src="js/productos.js"></script>
 <script type="text/javascript" src="js/carousell.js"></script>
 <script type="text/javascript" src="js/initialApp.js"></script>
 <script type="text/javascript" src="js/editar_producto.js"></script>
+<script src="./js/easy_modal_v1.js"></script>

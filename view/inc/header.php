@@ -1,11 +1,11 @@
-<header id="header" class="header fixed-top d-flex align-items-center">
+<header id="header" class="header fixed-top d-flex align-items-center dark:bg-slate-800 dark:shadow-sm dark:shadow-slate-300/20">
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="./" class="logo d-flex align-items-center">
-      <img src="img/logo.jpeg" alt="">
-      <span class="d-none d-lg-block"><?= COMPANY ?></span>
+      <img src="img/djsander.jpg" alt="logo djsandergonzalez"  class="bg-gray-200 img-fluid rounded-circle w-[15rem]" >
+      <span class="d-none d-lg-block dark:text-slate-400"><?= COMPANY ?></span>
     </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
+    <i class="dark:text-slate-400 bi bi-list toggle-sidebar-btn"></i>
     <?php //if ($_SESSION['dataUsuario']["primer_inicio"] == '0') { ?>
     <?php //} ?>
 
@@ -14,7 +14,7 @@
 
   <div class="search-bar">
     <form class="search-form d-flex align-items-center" method="POST" action="#">
-      <input type="text" name="query" placeholder="Buscar productos" title="Enter search keyword">
+      <input class="dark:bg-slate-200 " type="text" name="query" placeholder="Buscar productos" title="Enter search keyword">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div> 
@@ -25,20 +25,20 @@
 
 
       <li class="nav-item">
-          <a id="lightModeButton" class="w-full group shadow-md  hover:shadow-cyan-500 bg-gray-700/80 dark:bg-slate-500 transition p-[10px] rounded-full mx-3 cursor-pointer">
-              <i class="bi bi-sun-fill navicon rounded-full text-amber-400"></i> 
+          <a id="lightModeButton" class="w-100 group shadow-md hover:shadow-slate-500 dark:hover:shadow-amber-500 bg-gray-700/80 dark:bg-slate-500 transition p-[10px] rounded-5 mx-3 cursor-pointer">
+            <i class="bi bi-sun-fill navicon rounded-full text-amber-400"></i> 
           </a>
       </li>
       <li class="nav-item dropdown pe-3">
 
-        <button class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
-          <span class="d-none d-md-block dropdown-toggle ps-2">USER<?php // $_SESSION['dataUsuario']['nombre']." ".$_SESSION['dataUsuario']['apellido']; ?></span>
+        <button class="dark:text-slate-400 nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
+          <span class="d-none d-md-block dropdown-toggle ps-2"><?= $_SESSION['dataUser']['nombre']; ?></span>
         </button>
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>USER NAME<?php // $_SESSION['dataUsuario']['nombre']." ".$_SESSION['dataUsuario']['apellido']; ?></h6>
-            <span>ROL USER<?php // $_SESSION['dataUsuario']['nombreRolUsuario']; ?></span>
+            <h6><?= $_SESSION['dataUser']['nombre']; ?></h6>
+            <span><?= $_SESSION['dataUser']['rol'] == 1 ? 'DEV MASTER' : 'Administrador'; ?></span>
           </li>
 
           <li> <hr class="dropdown-divider"> </li>
@@ -50,9 +50,9 @@
             </a>
           </li>
 
-          <li> <hr class="dropdown-divider"> </li>
+          <li class="collapse hidden"> <hr class="dropdown-divider"> </li>
 
-          <li>
+          <li class="collapse hidden">
             <a class="dropdown-item d-flex align-items-center" href="./configuracion.php">
               <i class="bi bi-gear-fill"></i>
               <span>Configuración</span>

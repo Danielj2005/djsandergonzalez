@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalList" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="lista_categorias" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div id="modal_tamano" class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content rounded-4 shadow-lg">
             <div class="modal-header">
@@ -9,7 +9,7 @@
             <div class="modal-body row m-0" id="bodyModalList">
 
                 <div id="tableList" class="justify-content-between align-items-center table table-responsive">
-                    <table class="table tableListModal mb-3 table-striped" id="tableListModal">
+                    <table class="table tableListModal mb-3 table-striped example" id="tableListModal">
                         <thead>
                             <tr>
                                 <th class="col text-center" scope="col">N.º</th>
@@ -19,6 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php category_model::lista(); ?>  
                         </tbody>
                     </table>
                 </div>

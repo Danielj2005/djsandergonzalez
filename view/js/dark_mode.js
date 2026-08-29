@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeBtn = document.getElementById('lightModeButton');
     const iconMode = themeBtn.querySelector('i');
-    const textMode = themeBtn.querySelector('span');
+    // const textMode = themeBtn.querySelector('span');
 
     // Función para actualizar la interfaz del botón
     function updateUI(theme) {
@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             iconMode.classList.add('bi-sun-fill', 'text-amber-400');
             iconMode.classList.remove('bi-moon-fill', 'text-black');
-            textMode.textContent = 'Light Mode';
+            // textMode.textContent = 'Light Mode';
         } else {
             document.documentElement.classList.add('light');
             document.documentElement.classList.remove('dark');
 
             iconMode.classList.add('bi-moon-fill', 'text-black');
             iconMode.classList.remove('bi-sun-fill', 'text-amber-400');
-            textMode.textContent = 'Dark Mode';
+            // textMode.textContent = 'Dark Mode';
         }
     }
 

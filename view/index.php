@@ -6,49 +6,21 @@ require_once "../model/mainModel.php"; // se incluye el model principal
 require_once "../model/productModel.php"; // se incluye el model producto
 require_once "../model/categoryModel.php"; // se incluye el model de categorias
 
-
-$estado = (!isset($_POST['estado_rol'])) ? '1' : $_POST['estado_rol'];
-$catalogo = modeloPrincipal::consultar("SELECT id FROM productos WHERE state = 1"); 
-
-
-$titleCards = [
-    "Usuarios",
-    "Inventario",
-    "Ventas",
-    "Bitácora",
-    "Configuración"
-];
-$iconCards = [
-    "bi-people",
-    "bi-box-seam-fill ",
-    "bi-currency-dollar",
-    "bi-clock-history",
-    "bi-gear"
-];
-
-
-$cantRegCards = [
-    "1",   
-    "46",   
-    "44",  
-    "100",
-    "1"
-];
-
-$footerCard = [
-    "Usuarios registrados",
-    "Productos registrados",
-    "Ventas registradas",
-    "Movimientos del sistema.",
-    "Configuración del sistema"
-];
-
-$path = [
-    "/user",
-    "/plan",
-    "/payments",
-    "/binnacle",
-    "/setting"
+$dataCards = [
+    [
+        "titulo" => "Usuarios", 
+        "icon" => "bi-people", 
+        "footer" => "Usuarios registrados", 
+        "tabla" => "users", 
+        "url" => "./usuarios.php"
+    ],
+    [
+        "titulo" => "Productos",
+        "icon" =>  "bi-box-seam-fill ", 
+        "footer" => "Productos registrados",
+        "tabla" => "productos", 
+        "url" => "./gestion_productos.php"
+    ]
 ];
 
 if ($_SESSION['logged_in'] === true) { ?>
@@ -65,7 +37,7 @@ if ($_SESSION['logged_in'] === true) { ?>
         <?php require_once "./inc/css.php"; ?>
     </head>
 
-    <body class="">
+    <body class="dark:bg-gray-900 bg-gray-400/20 ">
         
         <?php
             require_once "./inc/header.php";
@@ -74,21 +46,26 @@ if ($_SESSION['logged_in'] === true) { ?>
 
         <main id="main" class="main">
             <div class="pagetitle">
-                <h1> Panel de Control </h1>
+                <h1 class="dark:text-slate-400 "> Panel de Control </h1>
             </div>
 
             <section class="dashboard">
                 <div class="row">
-                    <?php foreach($titleCards as $index => $title) {  ?>
+                    <?php 
+                        foreach($dataCards as $index => $data) {  
+                            $query = modeloPrincipal::consultar("SELECT id FROM ".$data['tabla'].""); 
+                            $cant_reg = mysqli_num_rows($query); 
+
+                    ?>
                         <div class="col-12 col-md-4 mb-3">
-                            <div class="card bg- text-">
+                            <div class="dark:bg-slate-200 card">
                                 <div class="card-body">
-                                    <h5 class="card-title "> <a href="<?= $path[$index]; ?>"> <?= $title; ?> </a> </h5>
+                                    <h5 class="card-title "> <a href="<?= $data["url"]; ?>"> <?= $data["titulo"]; ?> </a> </h5>
                                     
-                                    <h2 class="card-text">
-                                        <i class="fs-1 bi <?= $iconCards[$index]; ?>"></i>&nbsp; <?= $cantRegCards[$index]; ?>
+                                    <h2 class="card-text fs-1">
+                                        <i class=" bi <?= $data["icon"]; ?>"></i>&nbsp; <?= $cant_reg; ?>
                                     </h2>
-                                    <p class="card-text"><small><?= $footerCard[$index]; ?></small></p>
+                                    <p class="card-text"><small><?= $data["footer"]; ?></small></p>
                                 </div>
                             </div>
                         </div>

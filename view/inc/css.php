@@ -11,6 +11,7 @@
 
 <link href="./css/nice_admin_styles/styles.css" rel="stylesheet">
 
+<script src="./js/tailwind.min.js"></script>
 
 <script>
     // Se ejecuta al instante antes de pintar el body

@@ -67,15 +67,15 @@ class category_model extends modeloPrincipal {
         // se guardan los datos en un array y se imprime
         $i = 1;
         while ( $mostrar = mysqli_fetch_array($consulta)) { ?>    
-            <tr>
-                <td class="col text-center"><?= $i++ ?></td>
-                <td class="col text-start"><?= $mostrar["nombre"]; ?></td>
-                <td class="col text-start"><?= $mostrar["descripcion"]; ?></td>
+            <tr class="dark:text-slate-200 dark:hover:bg-slate-200/20 hover:bg-slate-500/20">
+                <td class="col text-center dark:text-slate-200 "><?= $i++ ?></td>
+                <td class="col text-start dark:text-slate-200 "><?= $mostrar["nombre"]; ?></td>
+                <td class="col text-start dark:text-slate-200 "><?= $mostrar["descripcion"]; ?></td>
                 
                 <td scope="row" class="text-center">
                     <?php 
                         if ($mostrar["state"] === "1") { ?>
-                            <button class="btn btn-outline-success bi-check-circle" title="state de la categoría"></button>
+                            <button class="btn dark:bg-emerald-500 btn-outline-success bi-check-circle" title="state de la categoría"></button>
                         <?php } else { ?>
                             
                             <form 
@@ -85,7 +85,7 @@ class category_model extends modeloPrincipal {
                                 data-type-form="update_estate" >
                                     <input type="hidden" name="modulo" value="inactivo">          
                                     <input type="hidden" name="UID" value="<?= modeloPrincipal::encryptionId($mostrar["id"]); ?>">
-                                    <button class="btn btn-outline-danger bi-x-circle" title="state de la categoría" type="submit"></button>
+                                    <button class="dark:bg-reed-500 btn btn-outline-danger bi-x-circle" title="state de la categoría" type="submit"></button>
                             </form>
                         <?php }
                     ?>

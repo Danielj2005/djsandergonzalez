@@ -25,23 +25,24 @@ if($modulo === "Guardar"){
         luego se pone la primera letra de cada palabra en mayúscula con la función ucwords().
     */
     $nombre = modeloPrincipal::primeraLetraMayus(modeloPrincipal::limpiar_cadena($_POST['nombre_categoria']));
-    $descripcion = modeloPrincipal::limpiar_cadena($_POST['descripcion']);
+    // se recibe la descripción del categoría, si no se recibe se asigna un valor por defecto.
+    $descripcion = modeloPrincipal::limpiar_cadena($_POST['descripcion']) ?? null;
     
-    modeloPrincipal::validar_campos_vacios([$nombre, $descripcion]); // Se verifica que no se hayan recibido campos vacíos.
+    modeloPrincipal::validar_campos_vacios([$nombre]); // Se verifica que no se hayan recibido campos vacíos.
     
     // se comprueba que no exista un registro con los mismos datos
-    if(mysqli_num_rows(modeloPrincipal::consultar("SELECT nombre, descripcion FROM categorias WHERE nombre = '$nombre' OR descripcion = '$descripcion'")) > 0){
+    if(mysqli_num_rows(modeloPrincipal::consultar("SELECT nombre FROM categorias WHERE nombre = '$nombre'")) > 0){
         /********** No se puede registrar un usuario si ya existe **********/
         alert_model::alerta_simple("¡Ocurrio un error!","El nombre que ingresaste ya se encuentra en uso.","error");
         exit(); 
     }
 
-    if (modeloPrincipal::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ.,\/ ()]{3,100}",$nombre)) {
+    if (modeloPrincipal::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ.,\/ ()]{3,100}", $nombre)) {
         alert_model::alert_of_format_wrong("nombre");
         exit();
     }
 
-    if (modeloPrincipal::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ.,\/ ()]{3,200}",$descripcion)) {
+    if (modeloPrincipal::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ.,\/ ()]{3,200}", $descripcion) && !empty($descripcion)) {
         alert_model::alert_of_format_wrong("Descripción");
         exit();
     }

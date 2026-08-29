@@ -258,6 +258,13 @@ class modeloPrincipal {
         return $mayuculas;
     }
 
+
+    // funcion para darle formato utf8 a los string
+    public static function convert_to_utf8 (string $string) {
+        return mb_convert_encoding(ucwords(strtolower($string)), 'UTF-8', 'ISO-8859-1');
+    }
+
+
     /*----------- funcion para convertir en mayusculas y limpiar cadenas -----------*/
     public static function limpiar_mayusculas($variable){
         $cadena = Self::limpiar_cadena($variable);

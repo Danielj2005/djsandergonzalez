@@ -43,7 +43,7 @@ function initCustomSelect() {
         
         // Estilo base de la etiqueta 
         // tag.className = 'cursor-pointer px-4 py-1 rounded-full border border-purple-500/50 text-slate-300 transition-all hover:bg-purple-500/20';
-        tag.className = 'btn btn-secondary px-4 py-1 rounded-5';
+        tag.className = 'btn btn-secondary rounded-full text-sm';
         
         // Evento al hacer clic
         tag.onclick = () => {
@@ -81,7 +81,8 @@ async function copyToClipboard(text) {
                 position: "right", // `left`, `center` or `right`
                 stopOnFocus: true, // Prevents dismissing of toast on hover
                 style: {
-                    background: "linear-gradient(to right, #370863, #870873)",
+                    background: "#e2e8f0",
+                    color: "#000"
                 }
             }).showToast();
             return true;
@@ -144,7 +145,7 @@ window.filterByCategory = (categoryName) => {
 // Ejecutar al cargar la página o el modal
 document.addEventListener('DOMContentLoaded', () => {
     initCustomSelect();
-    getProductos();
+    // getProductos();
 
     
 });

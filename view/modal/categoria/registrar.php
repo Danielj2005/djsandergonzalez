@@ -1,9 +1,9 @@
 <div class="modal fade" id="registrar_categoria" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div id="modal_tamano" class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content rounded-4 border border-secondary shadow-md">
+        <div class="dark:bg-slate-800 modal-content rounded-4 border border-secondary shadow-md">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Categoría</h5>
-                <button id="btnCloseModal" type="button" class="text-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="dark:text-slate-200 modal-title" id="exampleModalLabel">Registrar Categoría</h5>
+                <button id="btnCloseModal" type="button" class="dark:bg-white  btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body" id="body_modal">
@@ -11,17 +11,17 @@
                     <input type="hidden" name="modulo" value="Guardar">
                     <div class="row mb-3 justify-content-center text-start">
                         <div class="col-12 mb-3">
-                            <label class="col-form-label">Nombre <span style="color:#f00;">*</span> </label>
+                            <label class="dark:text-slate-200 col-form-label">Nombre <span style="color:#f00;">*</span> </label>
                             <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ.,\/ ()]{4,100}" required="" placeholder="Ejemplo: Lácteos y Refrigerados" class="form-control" id="input_añadir_categoria" name="nombre_categoria">
                         </div>
 
                         <div class="col-12 mb-3">
-                            <label class="col-form-label">Descripción <span style="color:#f00;">*</span> </label>
-                            <textarea required placeholder="Ejemplo: Leche, yogur, queso, mantequilla, huevos, postres fríos." class="form-control" name="descripcion" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ.,\/ ()]{4,200}"></textarea>
+                            <label class="dark:text-slate-200 col-form-label">Descripción <span class="dark:text-red-200 text-[#f00]">(opcional)</span> </label>
+                            <textarea placeholder="Ejemplo: Leche, yogur, queso, mantequilla, huevos, postres fríos." class="form-control" name="descripcion" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ.,\/ ()]{4,200}"></textarea>
                         </div>
 
                         <div class="col-12 mb-3 text-start">
-                            <p class="form-p">Los campos con <span style="color:#f00;">*</span> son obligatorios</p>
+                            <p class="dark:text-slate-200 form-p">Los campos con <span style="color:#f00;">*</span> son obligatorios</p>
                         </div>
                     </div>
                 </form>

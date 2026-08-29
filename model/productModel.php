@@ -145,48 +145,21 @@ class producto_model extends modeloPrincipal {
             <tr class="text-center">
                 <td class="text-center"></td>
                 <td class="text-start">
-                    <p class="fw-bold mb-1">
-                        <span class="rounded-5 badge fw-bold text-bg-<?= $stock ?> text-<?= $stock ?>">.</span>
+                    <p class="fw-bold mb-2 dark:text-slate-200">
                         <?= ucwords(strtolower($mostrar["nombre"])) ?>
                     </p>
                     <small class="d-flex gap-1 text-muted align-items-center"> 
                         <?php while ($cat = mysqli_fetch_assoc($categorias)) { ?> 
-                            <span class="bg-indigo-600 badge p-2 text-white rounded-5 text-bg-dark">
+                            <span class="bg-indigo-600 badge p-2 text-white rounded-5 ">
                                 <?= $cat['categorias'] ?>
                             </span>
                         <?php } ?> 
                     </small>
                 </td>
                 <td class="text-center">
-                    <?php if ($mostrar["precio"] < 1): ?>
-                        <div class="flex justify-center gap-2 flex-wrap items-center">
-                            <span class="badge text-bg-danger p-2 text-sm">Bajo pedido</span>
-                        </div>
-
-                    <?php else: ?>
-                        <div class="dropdown flex justify-center gap-2 flex-wrap items-center mb-2">
-
-                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?= "$ ".self::formatnumber("USD",$mostrar["precio"]); ?>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-item"> 
-                                    <span id="moneda_bs" class=" text-sm badge fw-bold text-bg-primary me-2"> <?= "Bs ".self::formatnumber("VES",$mostrar["precio"] * $prices['USD']); ?></span> 
-                                    <i class="btn bi bi-copy" onclick="copyToClipboard('<?= self::formatnumber('VES',$mostrar['precio'] * $prices['USD']); ?>')"></i>
-                                </li>
-                                <li class="dropdown-item">
-                                    <span id="moneda_euro" class=" text-sm badge fw-bold text-bg-secondary me-2"> <?= "€ ".self::formatnumber("VES",$mostrar["precio"] * $prices['EURO']); ?></span> 
-                                    <i class="btn bi bi-copy" onclick="copyToClipboard('<?= self::formatnumber('VES',$mostrar['precio'] * $prices['EURO']); ?>')"></i>
-                                </li>
-                                <li class="d-none"> 
-                                    <span id="moneda_usdt" class=" text-sm badge text-bg-info me-2"> <?= "USDT ".self::formatnumber("VES",$mostrar["precio"] * ($prices['USD'] * 1.3 )); ?></span> 
-                                    <i class="btn bi bi-copy" onclick="copyToClipboard('<?= self::formatnumber('VES',$mostrar['precio'] * ($prices['USD'] * 1.3 )); ?>')"></i>
-                                </li>
-                                    
-                            </ul>
-                        </div>
-
-                    <?php endif; ?>
+                    <div class="cursor-pointer rounded-full bg-blue-700 mb-2 dark:text-white text-slate-200" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
+                        <?= "$ ".$mostrar["precio"]; ?>
+                    </div>
                 </td>
                 <td>
                     <button onclick="verImagen('<?= $imgSrc; ?>','<?= $mostrar['nombre'] ?>' )" class="btn btn-secondary text-xs">

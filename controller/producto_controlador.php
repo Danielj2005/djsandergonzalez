@@ -78,13 +78,7 @@ if($modulo === 'Guardar'){
         alert_model::alerta_simple("¡Ocurrió un error!","El precio del producto no cumple con el formato establecido","error");
         exit();
     }
-    echo "<br>"; 
-    echo $producto; 
-    echo "<br>"; 
-    echo $price; 
-    echo "<br>"; 
-    echo $desc; 
-    echo "<br>"; 
+    
     // se registran los datos del producto
     try {
 
@@ -127,7 +121,7 @@ if($modulo == 'Modificar'){
 
     $producto = $_POST['producto'];
     $price = $_POST['price'] ?? 0.00; // si no se envía un precio, se asigna un valor por defecto de 1.00
-    $price = number_format($price, 2, '.', ',');
+    // $price = number_format($price, 2, '.', ',');
     $category = $_POST['category'];
     $image = $_POST['image'];
     $desc = $_POST['desc'];
