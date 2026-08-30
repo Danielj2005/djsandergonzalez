@@ -11,7 +11,8 @@ function easyModal () {
     modalBg.id = "em_lists";
     modalBg.setAttribute("tabindex","-1");
     modalBg.setAttribute("aria-labelledby","modal_lists");
-    modalBg.setAttribute("aria-hidden","true");
+    modalBg.setAttribute("aria-hidden","true"); 
+    modalBg.setAttribute("data-bs-backdrop","static");
     // modal container
     const modalContainer = document.createElement('div');
     modalContainer.className = 'modal-dialog modal-dialog-scrollable';
@@ -46,6 +47,7 @@ function easyModal () {
     modalBtnSave.className = 'btn btn-success';
     modalBtnSave.textContent = "Guardar";
     modalBtnSave.id = "em_btn_save";
+    modalBtnSave.setAttribute("form","em_form");
     modalBtnSave.type = "submit";
     // btn cancel
     const modalBtnCancel = document.createElement('button');
@@ -81,7 +83,7 @@ function updateEasyModal (em_title, em_icon, em_size, em_target) {
     document.getElementById('em_title').innerHTML = modalIcontitle;
     document.getElementById('em_title').innerHTML += em_title;
     
-    document.getElementById('em_container').classList.add(em_size);
+    document.getElementById('em_container').className = `modal-dialog modal-dialog-scrollable ${em_size}`;
 
     if (em_target == "list") {
         document.getElementById('em_footer').classList.add('d-none');

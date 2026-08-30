@@ -80,7 +80,7 @@
                 <summary class=" bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 dark:text-slate-300 gap-2 rounded-3 shadow-md flex items-center justify-between p-2 text-gray-700 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors list-none [&::-webkit-details-marker]:hidden">
                     <div class="flex items-center space-x-3">
                     <i class="bi bi-people-fill"></i>
-                    <span>Usuarios</span>
+                    <span>Gestión de Usuarios</span>
                     </div>
                     <!-- Flecha que rota al abrir -->
                     <i class="bi bi-chevron-down text-sm transition-transform duration-200 group-open:rotate-180"></i>
@@ -99,7 +99,7 @@
                     </li>
                     
                     <li class="hover:bg-slate-500/40 p-1 rounded-xl "> 
-                        <a class="dark:text-white hover:text-slate-200 text-slate-800" href="./empleados.php">
+                        <a class="dark:text-white hover:text-slate-200 text-slate-800" href="./usuarios.php">
                             <i class="bi bi-caret-right"></i>
                             <span>Usuarios</span>
                         </a>

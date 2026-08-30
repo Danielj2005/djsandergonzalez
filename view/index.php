@@ -55,7 +55,7 @@ if ($_SESSION['logged_in'] === true) { ?>
                         foreach($dataCards as $index => $data) {  
                             $query = modeloPrincipal::consultar("SELECT id FROM ".$data['tabla'].""); 
                             $cant_reg = mysqli_num_rows($query); 
-
+                            $cant_reg = $data['tabla'] == 'users' ? $cant_reg - 1 : $cant_reg;
                     ?>
                         <div class="col-12 col-md-4 mb-3">
                             <div class="dark:bg-slate-200 card">

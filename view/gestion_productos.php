@@ -106,14 +106,14 @@ require_once "../model/categoryModel.php";
                                     <h2 id="titleModuleProducts" class="dark:text-slate-400 mb-3 fs-2 col-12 fw-bold card-title">Inventario de Productos</h2>
 
                                     <div class="setCol text-center col-md-6 col-12 mb-3">
-                                        <button data-bs-target="#registrar_producto" data-bs-toggle="modal" type="button" class="col-12 btn btn-success">
+                                        <button data-bs-target="#registrar_producto" data-bs-toggle="modal" type="button" class="btn btn-success">
                                             <i class="bi bi-plus-circle"></i> Registrar Productos 
                                         </button>
                                     </div>
 
                                     <div class="setCol text-center col-md-6 col-12 mb-3">
                                         <button em_size="modal-lg" em_trigger="list" em_icon="bi-list-columns-reverse" em_url="../api/lista_productos.php?UID=0" em_title="Lista de Productos Inactivos" 
-                                            data-bs-target="#em_lists" data-bs-toggle="modal" type="button" class="em_trigger col-12 btn btn-danger">
+                                            data-bs-target="#em_lists" data-bs-toggle="modal" type="button" class="em_trigger btn btn-danger">
                                             <i class="bi bi-x-circle"></i> Ver Productos Inactivos
                                         </button>
                                     </div>
@@ -172,41 +172,16 @@ require_once "../model/categoryModel.php";
 
             <!-- modal Section -->
             <?php 
-            // modal category Section
-            require_once './modal/categoria/registrar.php';
-
-            // modal brand Section
-            // require_once './modal/marca/registrar.php';
-            // require_once './modal/marca/lista.php';
-
-            // modal product Section
-            require_once './modal/producto/registrar.php';
-            require_once './modal/producto/editar.php'; 
-
-            // modal presentation Section
-            // require_once './modal/presentacion/registrar.php';
-            // require_once './modal/presentacion/lista.php';
-            // require_once './modal/presentacion/editar.php'; 
-
-            ?>
-            <!-- /modal Section -->
-
-            <?php 
-                //include_once "./modal/plantillaModalCustom.php"; 
+                // modal category Section
+                require_once './modal/categoria/registrar.php';
+                // modal product Section
+                require_once './modal/producto/registrar.php';
+                require_once './modal/producto/editar.php'; 
                 
                 // se incluye el footer / pie de pagina a la vista
                 include_once "./inc/footer.php";
                 // se incluyen los script de javascript a la vista 
                 include_once "./inc/scripts_include.php"; 
-            
-                //model_user::validar_sesion_activa($id_usuario);
-        
-                //config_model::verificar_actualizacion_configuracion(); 
             ?>
         </body>
     </html>
-
-<?php //}else{
-    // se registran las acciones del usuario en la bitacora y es redirijido al inicio
-   // bitacora::intento_de_acceso_a_vista_sin_permisos("Gestión de Productos");
-//}

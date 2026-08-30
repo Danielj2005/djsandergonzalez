@@ -5,7 +5,7 @@ $(document).ready(function(){
 
         // Llamar a un archivo PHP para destruir las variables de sesión
     
-        DanikatAlert.fire({
+        Swal.fire({
             title: 'Estas Seguro(a)?',
             text: "Se cerrará la sesión",
             icon: 'warning',
