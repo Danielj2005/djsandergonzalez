@@ -76,40 +76,54 @@ if($modulo === "Guardar"){
 
 // modulo para Modificar informacion personal de un usuario
 
-// if($modulo === "modificar_info_personal_usuario"){
+if($modulo === "modificar_info_personal_usuario"){
     
-//     /*------------------ información personal de el usuario ------------------*/
-//     $nombre = modeloprincipal::limpiar_mayusculas($_POST["nombres"]);
-//     $correo =  modeloprincipal::limpiar_cadena($_POST["email"]);
-//     // Se verifica que no se hayan recibido campos vacíos.
-//     modeloPrincipal::validar_campos_vacios([$nombre,$correo]);
+    $id_usuario = $_SESSION['dataUser']['id']; 
+    /*------------------ información personal de el usuario ------------------*/
+    $nombre = modeloprincipal::limpiar_mayusculas($_POST["nombre"]);
+    $correo =  modeloprincipal::limpiar_cadena($_POST["correo"]);
+    $telefono =  modeloprincipal::limpiar_cadena($_POST["telefono"]);
+    // Se verifica que no se hayan recibido campos vacíos.
+    modeloPrincipal::validar_campos_vacios([$nombre,$correo]);
 
-//     if (modeloprincipal::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,60}",$nombre)) {
-//         alert_model::alert_of_format_wrong("NOMBRE");
-//         exit();
-//     }
-//     if (modeloprincipal::verificar_datos("[A-Za-zÁÉÍÚÓáéíóúñÑ@.0-9]{11,100}",$correo)) {
-//         alert_model::alert_of_format_wrong("CORREO");
-//         exit();
-//     }
+    if (modeloprincipal::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,60}",$nombre)) {
+        alert_model::alert_of_format_wrong("NOMBRE");
+        exit();
+    }
+    if (modeloprincipal::verificar_datos("[A-Za-zÁÉÍÚÓáéíóúñÑ@.0-9]{11,100}",$correo)) {
+        alert_model::alert_of_format_wrong("CORREO");
+        exit();
+    }
     
-//     // Se actualizara la información personal del usuario
-//     try {
-//         $actualizar = modeloPrincipal::UpdateSQL("usuario","cedula = '$cedula', nombre = '$nombre', apellido = '$apellido', correo = '$correo', telefono = '$telefono', direccion = '$direccion'", "id_usuario = $id_usuario");
+    // Se actualizara la información personal del usuario
+    try {
+        $actualizar = modeloPrincipal::UpdateSQL("users","full_name = '$nombre', correo = '$correo', telefono = '$telefono'", "id = $id_usuario");
         
-//         if (!$actualizar) {
-//             alert_model::alerta_simple("Ha ocurrido un error!", "ocurrio un error al actualizar la información personal del usuario.", "error");
-//             exit();
-//         }
+        if (!$actualizar) {
+            alert_model::alerta_simple("Ha ocurrido un error!", "ocurrio un error al actualizar la información personal del usuario.", "error");
+            exit();
+        }
 
-//         alert_model::alert_mod_success();
-//         exit();
-//     } catch (Exception $e) {
-//         alert_model::alert_mod_error();
-//         exit();
-//     }
+        $update_data_user = mysqli_fetch_assoc(modeloPrincipal::consultar("SELECT * FROM users WHERE id = $id_usuario"));
+
+                
+        $_SESSION['dataUser'] = [
+            "nombre" => $update_data_user["full_name"],
+            "correo" => $update_data_user["correo"],
+            "telefono" => $update_data_user["telefono"],
+            "id" => $update_data_user["id"],
+            "rol" => $update_data_user["role"],
+            "estado" => $update_data_user["state"]
+        ];
+
+        alert_model::alert_mod_success();
+        exit();
+    } catch (Exception $e) {
+        alert_model::alert_mod_error();
+        exit();
+    }
     
-// }
+}
 
 
 
@@ -119,101 +133,92 @@ if($modulo === "Guardar"){
 
 // modulo para Modificar contraseña de un usuario
 
-// if($modulo === "modificar_contraseña_usuario"){
+if($modulo === "modificar_contraseña_usuario"){
     
-//     $contraseña_actual = modeloprincipal::limpiar_cadena($_POST["current_password"]);
+    $id_usuario = $_SESSION['dataUser']['id']; 
+    $contraseña_actual = modeloprincipal::limpiar_cadena($_POST["current_password"]);
     
-//     modeloprincipal::validar_campos_vacios([$_POST["current_password"], $_POST['password2'], $_POST['password']]); // se verifica si se recibieron campos vacios
+    modeloprincipal::validar_campos_vacios([$_POST["current_password"], $_POST['password2'], $_POST['password']]); // se verifica si se recibieron campos vacios
     
-//     $hash_guardado_en_bd = mysqli_fetch_assoc(modeloprincipal::consultar("SELECT contraseña FROM usuario WHERE id_usuario = '$id_usuario'"))["contraseña"];
+    $hash_guardado_en_bd = mysqli_fetch_assoc(modeloprincipal::consultar("SELECT password FROM users WHERE id = '$id_usuario'"))["password"];
     
-//     // se verifica que la contraseña coincida con la guardad en la base de datos
-//     if(!password_verify($contraseña_actual, $hash_guardado_en_bd)){
-//         alert_model::alerta_simple(
-//             "¡Ocurrio un error!", 
-//             "La contraseña actual que ingresaste es incorrecta, verifique e intente nuevamente.",
-//             "error"
-//         );
-//         exit();
-//     }
+    // se verifica que la contraseña coincida con la guardad en la base de datos
+    if(!password_verify($contraseña_actual, $hash_guardado_en_bd)){
+        alert_model::alerta_simple(
+            "¡Ocurrio un error!", 
+            "La contraseña actual que ingresaste es incorrecta, verifique e intente nuevamente.",
+            "error"
+        );
+        exit();
+    }
 
-//     $contraseña_nueva = modeloprincipal::limpiar_cadena($_POST["password"]);
-//     $contraseña_nueva2 = modeloprincipal::limpiar_cadena($_POST['password2']);
+    $contraseña_nueva = modeloprincipal::limpiar_cadena($_POST["password"]);
+    $contraseña_nueva2 = modeloprincipal::limpiar_cadena($_POST['password2']);
     
-//     if($contraseña_nueva !== $contraseña_nueva2){
-//         alert_model::alerta_simple(
-//             "¡Ocurrió un error!",
-//             "Las contraseñas que ingresaste no coinciden. Por favor, verifica que las hayas escrito correctamente.",
-//             "error"
-//         );
-//         exit();
-//     }
+    if($contraseña_nueva !== $contraseña_nueva2){
+        alert_model::alerta_simple(
+            "¡Ocurrió un error!",
+            "Las contraseñas que ingresaste no coinciden. Por favor, verifica que las hayas escrito correctamente.",
+            "error"
+        );
+        exit();
+    }
 
     
-//     if (modeloprincipal::verificar_datos("[!@#$%A-Za-z0-9\-]{".$configuracion['caracteres'].",60}", $contraseña_nueva)) {
-//         // alert_model::alert_of_format_wrong("'contraseña nueva'");
-//         alert_model::alerta_simple(
-//             "Ocurrio un error!", 
-//             "La contraseña no cumple con los requisitos de seguridad, Puede contener menos 1 número y 1 letra, Puede contener al menos ".$configuracion['simbolos']." de estos caracteres:!@#$% y Debe tener entre ".$configuracion['caracteres']." y 60 caracteres., verifique e intente nuevamente.",
-//             "error"
-//         );
-//         exit();
-//     }
+    if (modeloprincipal::verificar_datos("[!@#$%A-Za-z0-9\-]{7,60}", $contraseña_nueva)) {
+        // alert_model::alert_of_format_wrong("'contraseña nueva'");
+        alert_model::alerta_simple(
+            "Ocurrio un error!", 
+            "La contraseña no cumple con los requisitos de seguridad, Puede contener menos 1 número y 1 letra, Puede contener al menos 1 de estos caracteres:!@#$% y Debe tener entre 7 y 60 caracteres., verifique e intente nuevamente.",
+            "error"
+        );
+        exit();
+    }
 
-//     // Contar símbolos (no alfanuméricos)
-//     $simbolosContraseña = preg_match_all("/\W/", $contraseña_nueva);
-//     if($simbolosContraseña < $configuracion['simbolos']){
-//         alert_model::alerta_simple(
-//             "¡Ocurrio un error!",
-//             "la contraseña no cumple con la cantidad de simbolos mínima de ".$configuracion['simbolos'].", verifique e intente nuevamente.",
-//             "error"
-//         );
-//         exit();
-//     }
+    // Contar símbolos (no alfanuméricos)
+    $simbolosContraseña = preg_match_all("/\W/", $contraseña_nueva);
+    if($simbolosContraseña < 1){
+        alert_model::alerta_simple(
+            "¡Ocurrio un error!",
+            "la contraseña no cumple con la cantidad de simbolos mínima de 1, verifique e intente nuevamente.",
+            "error"
+        );
+        exit();
+    }
 
-//     // Contar números
-//     $numeros = preg_match_all("/[0-9]/", $contraseña_nueva);
+    // Contar números
+    $numeros = preg_match_all("/[0-9]/", $contraseña_nueva);
 
-//     if($numeros < $configuracion['numeros']){
-//         alert_model::alerta_simple(
-//             "¡Ocurrio un error!", 
-//             "la contraseña no cumple con la cantidad mínima de números de ".$configuracion['numeros'].", verifique e intente nuevamente.",
-//             "error"
-//         );
-//         exit();
-//     }
+    if($numeros < 1){
+        alert_model::alerta_simple(
+            "¡Ocurrio un error!", 
+            "la contraseña no cumple con la cantidad mínima de números de 1, verifique e intente nuevamente.",
+            "error"
+        );
+        exit();
+    }
 
-//     try {
+    try {
 
-//         $contraseña = modeloPrincipal::hashear_contrasena($contraseña_nueva);
+        $contraseña = modeloPrincipal::hashear_contrasena($contraseña_nueva);
 
-//         $actualizar = modeloprincipal::UpdateSQL(
-//             "usuario",
-//             "contraseña = '$contraseña'",
-//             "id_usuario = $id_usuario"
-//         );
+        $actualizar = modeloprincipal::UpdateSQL("users", "password = '$contraseña'", "id = $id_usuario");
 
-//         if (!$actualizar) {
-//             alert_model::alerta_simple(
-//                 "Ha ocurrido un error!", 
-//                 "ocurrio un error al guardar la nueva contraseña .", 
-//                 "error"
-//             );
-//             exit();
-//         }
+        if (!$actualizar) {
+            alert_model::alerta_simple("Ha ocurrido un error!", "ocurrio un error al guardar la nueva contraseña .", "error");
+            exit();
+        }
 
-//         model_user::bitacora_modificacion_contraseña();
+        alert_model::alert_mod_success();
 
-//         alert_model::alert_mod_success();
+        exit();
 
-//         exit();
-
-//     } catch (Exception $e) {
+    } catch (Exception $e) {
         
-//         alert_model::alert_mod_error();
-//         exit();
-//     }
-// }
+        alert_model::alert_mod_error();
+        exit();
+    }
+}
 
 
 

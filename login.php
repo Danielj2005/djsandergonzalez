@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-$_SESSION["intentos_sesion"] = 1;
+$_SESSION["intentos_sesion"] = 0;
 
 include_once "./config/APP.php"; // se incluye el model principal
 include_once "./model/mainModel.php"; // se incluye el model principal

@@ -68,7 +68,7 @@ try {
 
 
             
-            <form action="../controller/usuario_controller.php" method="post" class="SendFormAjax d-inline-block" 
+            <form action="../controller/usuario_controller.php" method="post" class="SendFormAjax" 
                 autocomplete="off" data-type-form="update">
                 
                 <input type="hidden" name="modulo" value="resetear_contraseña">
@@ -81,9 +81,9 @@ try {
             </form>
         </div>
                 
-        <script type="text/javascript"> SendFormAjax(); </script>
+        <?php echo '<script type="text/javascript"> setTimeout(()=>{SendFormAjax()},3000); </script>';
 
-<?php endif;
+        endif;
     }
 
     

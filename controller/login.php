@@ -36,8 +36,19 @@ if(mysqli_num_rows($selectUser) < 1){
     exit();
 }
 
+/** se verifica si el usuario esta activo **/
+// if ($datos_usuario["state"] == 0 || $datos_usuario["role"] != 1) {
+if ($datos_usuario["state"] == 0 && $id_usuario !== 1) {
+    alert_model::alerta_simple(
+        '¡Cuenta inactiva!',
+        'Su cuenta se encuentra inactiva, por favor contacte al administrador del sistema.',
+        'warning'
+    );
+    exit();
+}
+
 // se verifica si el numero de intentos de inicio de sesión es igual, a 3
-if ($_SESSION["intentos_sesion"] == $intentos_inicio_sesion) {
+if ($_SESSION["intentos_sesion"] == $intentos_inicio_sesion && $id_usuario !== 1) {
     // se bloquea el usuario para iniciar sesion en caso de alcanzar el limite de intentos
     modeloPrincipal::UpdateSQL( "users", "state = 0", "id = $id_usuario" );
 
@@ -65,32 +76,18 @@ if (!password_verify($contraseña, $hash)) {
     exit();
 }
 
-
-/** se verifica si el usuario esta activo **/
-// if ($datos_usuario["state"] == 0 || $datos_usuario["role"] != 1) {
-if ($datos_usuario["state"] == 0) {
-    alert_model::alerta_simple(
-        '¡Cuenta inactiva!',
-        'Su cuenta se encuentra inactiva, por favor contacte al administrador del sistema.',
-        'warning'
-    );
-    exit();
-}
-
-
 $_SESSION['logged_in'] = true; // variable de inicio de sesion
 
 $_SESSION['dataUser'] = [
     "nombre" => $datos_usuario["full_name"],
     "correo" => $datos_usuario["correo"],
+    "telefono" => $datos_usuario["telefono"],
     "id" => $datos_usuario["id"],
     "rol" => $datos_usuario["role"],
     "estado" => $datos_usuario["state"]
 ];
 
-
 echo '<script type="text/javascript"> window.location = "./view/index.php";  </script>';
-
 
 mysqli_free_result($selectUser);
 exit();

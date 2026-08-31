@@ -6,8 +6,6 @@ require_once "../config/SERVER.php";
 require_once "../model/mainModel.php"; // se incluye el model principal
 require_once "../model/userModel.php"; 
 
-// se evalua que este rol tenga el acceso a esta vista
-
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +76,7 @@ require_once "../model/userModel.php";
 										</tr>
 									</thead>
 									<tbody>
-										<?php model_user::lista_de_usuarios(); ?>  
+										<?php model_user::lista_de_usuarios(2); ?>  
 									</tbody>
 								</table>
 							</div>

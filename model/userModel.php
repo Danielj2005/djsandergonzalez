@@ -171,10 +171,11 @@ class model_user extends modeloPrincipal {
 
     public static function lista_de_usuarios($state = 1) {
         $id_usuario = $_SESSION['dataUser']['id']; // se obtiene el id del usuario que inicio sesion
-
-        $lista_usuario = modeloPrincipal::consultar("SELECT * FROM users 
-            WHERE id != 1 AND role != 1 AND state = $state AND id != $id_usuario
-            ORDER BY full_name ASC");
+        $query = $state == 2 
+        ? "SELECT * FROM users WHERE id != 1 AND role != 1 AND id != $id_usuario ORDER BY full_name ASC"
+        : "SELECT * FROM users WHERE id != 1 AND role != 1 AND state = $state AND id != $id_usuario ORDER BY full_name ASC";
+        
+        $lista_usuario = modeloPrincipal::consultar($query);
         
         // se imprimen los resultados de la consulta
         while ( $mostrar = mysqli_fetch_array($lista_usuario)) { ?>    
