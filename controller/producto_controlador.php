@@ -120,11 +120,18 @@ if($modulo == 'Modificar'){
     $id_producto = modeloPrincipal::limpiar_cadena($id_producto);
 
     $producto = $_POST['producto'];
-    $price = $_POST['price'] ?? 0.00; // si no se envía un precio, se asigna un valor por defecto de 1.00
+    $price = $_POST['price'] ?? null; // si no se envía un precio, se asigna un valor por defecto de 1.00
     // $price = number_format($price, 2, '.', ',');
     $category = $_POST['category'];
     $image = $_POST['image'];
     $desc = $_POST['desc'];
+    $imgDeleted = [];
+
+    if (!empty($_POST['imgDeleted'])) {
+        $imgDeleted = array_values(array_filter(array_map(function ($value) {
+            return trim($value);
+        }, explode(',', $_POST['imgDeleted']))));
+    }
 
     // Obtener imágenes y hashes actuales del producto 
     $producto_actual = modeloPrincipal::consultar("SELECT images, image_hash FROM productos WHERE id = $id_producto");
@@ -143,6 +150,16 @@ if($modulo == 'Modificar'){
 
     if (!empty($producto_actual['image_hash'])) {
         $existing_hashes = array_filter(array_map('trim', explode(',', $producto_actual['image_hash'])));
+    }
+
+    $deleted_image_names = [];
+    foreach ($imgDeleted as $deleted_image) {
+        $deleted_image = trim($deleted_image);
+        if ($deleted_image === '') {
+            continue;
+        }
+
+        $deleted_image_names[] = strtolower(basename($deleted_image));
     }
 
     $uploaded_paths = [];
@@ -181,12 +198,29 @@ if($modulo == 'Modificar'){
         }
     }
 
-    $final_images = $existing_images;
-    $final_hashes = $existing_hashes;
+    $final_images = [];
+    $final_hashes = [];
+
+    foreach ($existing_images as $index => $existing_image) {
+        $stored_file_name = strtolower(basename(trim($existing_image)));
+
+        if (in_array($stored_file_name, $deleted_image_names, true)) {
+            $storage_path = dirname(__DIR__) . '/storage/' . basename($existing_image);
+
+            if (file_exists($storage_path) && is_file($storage_path)) {
+                unlink($storage_path);
+            }
+
+            continue;
+        }
+
+        $final_images[] = $existing_image;
+        $final_hashes[] = $existing_hashes[$index] ?? '';
+    }
 
     if (!empty($uploaded_paths)) {
-        $final_images = array_merge($existing_images, $uploaded_paths);
-        $final_hashes = array_merge($existing_hashes, $uploaded_hashes);
+        $final_images = array_merge($final_images, $uploaded_paths);
+        $final_hashes = array_merge($final_hashes, $uploaded_hashes);
     }
 
     $images_string = implode(',', $final_images);

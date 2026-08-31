@@ -186,10 +186,12 @@ async function editingProduct(ID) {
 
     try {
         // Consultamos al PHP que trae los datos de MySQL
-        const resp = await fetch('../controller/producto.php?UID=' + ID);
+        const resp = await fetch('../api/producto/editar.php?UID=' + ID);
         const dataProductToEdit = await resp.text();
 
         document.getElementById('tableModalEdit').innerHTML = dataProductToEdit;
+        
+        delete_img_producto();
 
     } catch (error) {
         console.error("Fallo de conexión con BD:", error);

@@ -11,9 +11,7 @@ try {
     // --- OBTENER PRODUCTOS PARA EDITAR (GET) ---
     if ($method === 'GET') { 
         
-        $estado = $_GET['UID'];
-
-        ?>
+        $estado = $_GET['UID']; ?>
     
             <div id="tableList" class=" dark:text-slate-200 justify-content-between align-items-center table table-responsive">
                 <table class="dark:text-slate-200 table tableListModal mb-3 em_tale_data" id="tableListModal">
@@ -32,10 +30,8 @@ try {
                     </tbody>
                 </table>
             </div>
-
     <?php
     }
-
     
 } catch(PDOException $e) {
     echo json_encode(["status" => "error", "message" => $e->getMessage()]);

@@ -102,9 +102,6 @@ require_once "../model/categoryModel.php";
                         <div class="col-12 pagetitle text-center">
                             <div class="dark:bg-slate-800 card rounded-2 p-2">
                                 <div class="car-body row">
-
-                                    <h2 id="titleModuleProducts" class="dark:text-slate-400 mb-3 fs-2 col-12 fw-bold card-title">Inventario de Productos</h2>
-
                                     <div class="setCol text-center col-md-6 col-12 mb-3">
                                         <button data-bs-target="#registrar_producto" data-bs-toggle="modal" type="button" class="btn btn-success">
                                             <i class="bi bi-plus-circle"></i> Registrar Productos 
