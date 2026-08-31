@@ -186,7 +186,7 @@ class model_user extends modeloPrincipal {
                 <th class="col text-center"><?= $mostrar["telefono"]; ?></th>
 
                 <th scope="col" class="col text-center">
-                    <button em_size="modal-md" em_trigger="reg" em_icon="bi-person-plus" em_url="../api/usuario/editar.php?UID=<?= modeloPrincipal::encryptionId($mostrar["id"]); ?>" em_title="Modificar Usuario" 
+                    <button em_size="modal-md" em_trigger="reg" em_icon="bi-pencil-square " em_url="../api/usuario/editar.php?UID=<?= modeloPrincipal::encryptionId($mostrar["id"]); ?>" em_title="Modificar Usuario" 
                         type="button" class="em_trigger text-sm btn btn btn-warning" 
                         data-bs-toggle="modal" data-bs-target="#em_lists">
                             <i class="bi bi-pencil-square me-1"></i>

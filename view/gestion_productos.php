@@ -112,7 +112,7 @@ require_once "../model/categoryModel.php";
                                     </div>
 
                                     <div class="setCol text-center col-md-6 col-12 mb-3">
-                                        <button em_size="modal-lg" em_trigger="list" em_icon="bi-list-columns-reverse" em_url="../api/lista_productos.php?UID=0" em_title="Lista de Productos Inactivos" 
+                                        <button em_size="modal-xl" em_trigger="list" em_icon="bi-list-columns-reverse" em_url="../api/lista_productos.php?UID=0" em_title="Lista de Productos Inactivos" 
                                             data-bs-target="#em_lists" data-bs-toggle="modal" type="button" class="em_trigger btn btn-danger">
                                             <i class="bi bi-x-circle"></i> Ver Productos Inactivos
                                         </button>

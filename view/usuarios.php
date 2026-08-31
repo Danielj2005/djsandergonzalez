@@ -44,18 +44,10 @@ require_once "../model/userModel.php";
 
 						
 						<div class="row text-center p-2 justify-content-center">
-							<div class="col-12 mb-3 col-md-6">
+							<div class="col-12 mb-3">
 								<button class="btn btn-success" data-bs-target="#registrar_usuario" data-bs-toggle="modal">
 									<i class="bi bi-plus-circle"></i>
 									Registrar un Usuario
-								</button>
-							</div>
-							<div class="col-12 mb-3 col-md-6">
-								<button em_size="modal-lg" em_trigger="list" em_icon="bi-list-columns-reverse" em_url="../api/usuario/lista.php?UID=0" em_title="Lista de Usuarios Inactivos" 
-									type="button" class="em_trigger text-sm btn btn btn-danger" 
-									data-bs-toggle="modal" data-bs-target="#em_lists">
-										<i class="bi bi-list-columns-reverse"></i>
-										<span>Ver Usuarios Inactivos</span>
 								</button>
 							</div>
 						</div>

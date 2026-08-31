@@ -24,7 +24,7 @@ try {
                             <th class="col text-center" scope="col">Precios</th>
                             <th class="col text-center" scope="col">Imagenes</th>
                             <th class="col text-center" scope="col">Editar</th>
-                            <th class="col text-center" scope="col">Desactivar</th>
+                            <th class="col text-center" scope="col">Activar</th>
                         </tr>
                     </thead>
                     <tbody>

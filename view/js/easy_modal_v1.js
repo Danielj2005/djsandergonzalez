@@ -117,7 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error("Error en la petición");
             const data = await response.text();
             document.getElementById('em_body_lists').innerHTML = data;
+
             dataTable('em_tale_data');
+            SendFormAjax();
 
         });
     });
