@@ -122,24 +122,25 @@ class producto_model extends modeloPrincipal {
         
         // se guardan los datos en un array y se imprime
         
-        $catalogo = modeloPrincipal::consultar("SELECT id, nombre, precio, images, state FROM productos WHERE state = $estado ORDER BY nombre ASC"); 
+        $catalogo = modeloPrincipal::consultar("SELECT id, nombre, precio, state FROM productos WHERE state = $estado ORDER BY nombre ASC"); 
         
         while ($mostrar = mysqli_fetch_assoc($catalogo)) {
 
-            $imgSrc = $mostrar['images'];
-
+            
             $id_producto = $mostrar["id"];
             $categorias = modeloPrincipal::consultar("SELECT C.nombre AS categorias FROM `categorias_productos` AS CP 
                 INNER JOIN categorias AS C ON C.id = CP.categoria_id
                 WHERE CP.producto_id = $id_producto"); 
 
-            $stock = rand(1,60);
-            
-            $stock = $stock > 30 ? "primary" : $stock;
-            $stock = $stock < 30 ? "warning" : $stock;
-            $stock = $stock < 20 ? "danger" : $stock;
-            $stock = $mostrar["precio"] < 1 ? "secondary" : $stock;
-            $stock = $mostrar["precio"] > 1 && $stock ? "success" : $stock;
+            $imagenes = modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id_producto = $id_producto"); 
+            $imgsrc = [];
+
+            while ( $img = mysqli_fetch_array($imagenes)){ 
+                $imgsrc[] = $img['img_src'];
+            }
+            // convertimos el array en string para enviarlo al input hidden
+            $imgsrc = implode(",",$imgsrc); 
+
 
         ?>
             <tr class="text-center">
@@ -162,7 +163,7 @@ class producto_model extends modeloPrincipal {
                     </div>
                 </td>
                 <td>
-                    <button onclick="verImagen('<?= $imgSrc; ?>','<?= $mostrar['nombre'] ?>' )" class="btn btn-secondary text-xs">
+                    <button onclick="verImagen('<?= $imgsrc ; ?>','<?= $mostrar['nombre'] ?>' )" class="btn btn-secondary text-xs">
                         <i class="bi bi-image mr-1"></i> 
                         <span class="small d-none d-md-block">Ver Imagen</span>
                     </button>
