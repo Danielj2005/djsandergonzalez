@@ -4,19 +4,19 @@
     <!-- Section Title -->
     <div class="container section-title dark:text-white" style="text-wrap: balance !important;" data-aos="fade-up">
         <h2 class="dark:text-white">Sobre Mí</h2>
-        <p>DJ Sander González</p>
+        <p>DJSanderGonzález</p>
     </div><!-- End Section Title -->
 
     <div class="container dark:text-white" data-aos="fade-up" data-aos-delay="200">
 
         <div class="row gy-4 justify-content-center">
             <div class="align-items-center col-lg-4 d-flex justify-content-center justify-content-md-end">
-                <img src="./view/img/djsander.jpg" class="bg-gray-200 img-fluid rounded-circle w-[15rem]" alt="image of Dj Sander Gonzalez">
+                <img src="./view/img/logo.webp" class="bg-gray-200 img-fluid rounded-circle w-[15rem]" alt="image of Dj Sander Gonzalez">
             </div>
             <div class="col-lg-8 content">
                 <h2 class=" dark:text-white">DJ Sander González</h2>
                 <p class="fst-italic py-3" style="text-wrap: balance !important;">
-                    La música es el corazón de cada celebración. DJ Sander González se encarga de crear el ambiente adecuado para que tu evento tenga ritmo, energía y momentos inolvidables.
+                    La música es el corazón de cada celebración. Me encargaré de crear el ambiente adecuado para que tu evento tenga ritmo, energía y momentos inolvidables.
                 </p>
                 <h2 class="font-bold dark:text-white text-slate-600 mb-3"> Lo que puedes esperar:</h2>
 

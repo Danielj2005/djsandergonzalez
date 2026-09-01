@@ -5,8 +5,7 @@
         </h2>
 
         <div class="flex items-center justify-center">
-            <p class="text-white text-md mb-3 text-balance w-[35rem]">El control de tus finanzas es nuestro trabajo. Tu crecimiento, es tu prioridad.
-                VENTOI es un Sistema seguro y confiable para que cada transacción cuente, sin perder un solo dato.</p>
+            <p class="text-white text-md mb-3 text-balance w-[35rem]">La música es el corazón de cada celebración. DjSanderGonzález me encargaré de crear el ambiente adecuado para que tu evento tenga ritmo, energía y momentos inolvidables.</p>
             
         </div>
         <hr class="text-white">

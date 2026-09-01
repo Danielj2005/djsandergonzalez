@@ -2,7 +2,7 @@
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="./" class="logo d-flex align-items-center">
-      <img src="img/djsander.jpg" alt="logo djsandergonzalez"  class="bg-gray-200 img-fluid rounded-circle w-[15rem]" >
+      <img src="img/logo.webp" alt="logo djsandergonzalez"  class="bg-gray-200 img-fluid rounded-circle w-[15rem]" >
       <span class="d-none d-lg-block dark:text-slate-400"><?= COMPANY ?></span>
     </a>
     <i class="dark:text-slate-400 bi bi-list toggle-sidebar-btn"></i>

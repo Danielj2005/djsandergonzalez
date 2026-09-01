@@ -3,7 +3,7 @@ session_start();
 
 $_SESSION["intentos_sesion"] = 0;
 
-include_once "./config/APP.php"; // se incluye el model principal
+include_once "./config/SERVER.php"; // se incluye el model principal
 include_once "./model/mainModel.php"; // se incluye el model principal
 
 ?>
@@ -16,26 +16,46 @@ include_once "./model/mainModel.php"; // se incluye el model principal
     
     <!-- tittle  -->
     <title><?= TITTLE ?></title>
-    <!-- Favicons -->
-    <link href="./view/img/logo.jpeg" rel="shortcut icon" type="image/x-icon">
-    
     <!-- css styles -->
     <?php require_once './view/inc/login/css.php'; ?>
 </head>
 
 <body id="" class="font-sans antialiased" >
-    <img class="absolute bg-cover bg-center opacity-20" src="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?q=80&w=2076" alt="wallpaper de VENTOI">
+    
+    <div class="absolute flex h-screen items-center justify-between overflow-hidden w-full flex-wrap">
+        <div class="p-2">
+            <img class="bg-cover bg-center opacity-20" src="./view/img/djsander2.webp" alt="wallpaper de djsandegonzalez" style="
+                background-size: 10rem;
+                right: 0;
+                left: 0;
+                height: 100vh;
+                background-position: center;
+            ">
+
+        </div>
+
+        <div class="p-2">
+            <img class="bg-cover bg-center opacity-20" src="./view/img/djsander1.webp" alt="wallpaper de djsandegonzalez" style="
+                background-size: 10rem;
+                right: 0;
+                left: 0;
+                height: 100vh;
+                background-position: center;
+            ">
+        </div>
+    </div>
 
 	<nav class="top-0 z-40 bg-slate-950 border-b border-purple-900/20 p-2 relative">
         <div class="max-w-7xl mx-auto d-flex flex-col flex-md-row gap-3 justify-content-between align-items-center">
-            <a href="./" class="text-center md:text-left">
+            <a href="./" class=" flex items-center gap-3 text-center md:text-left">
+                <img class="rounded-full w-[5rem]" src="./view/img/logo.webp" alt="Logo de <?= COMPANY ?>">
                 <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"><?= COMPANY ?></h1>
                 <p class="d-none text-[10px] text-slate-500 uppercase tracking-widest">Todo lo que buscas en un solo lugar</p>
             </a>
 
             <div class="flex gap-4 items-center">
                 <a href="./catalogo.php" class="d-flex align-items-center text-slate-400 hover:text-cyan-500 transition">
-                    <i class="fs-md-2 bi bi-house-fill me-3"></i>Volver al Catálogo
+                    <i class="fs-md-2 bi bi-cart me-3"></i>Volver al Catálogo
                 </a> 
             </div>
         </div>
@@ -78,7 +98,7 @@ include_once "./model/mainModel.php"; // se incluye el model principal
                     <button class="mb-2 w-full bg-blue-600 p-2 rounded-2xl font-bold hover:bg-blue-900 transition shadow-lg shadow-blue-500/20">Entrar</button>
                     
                     <div class="text-center mb-2">
-                        <a href="./catalogo.php" class="btn btn-outline-secondary w-full text-slate-200 mt-4 text-sm">Volver al catálogo</a>
+                        <a href="./catalogo.php" class="btn btn-outline-secondary w-full text-slate-200 mt-4 text-sm"><i class="fs-md-2 bi bi-cart me-3"></i> Volver al catálogo</a>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 
 <section id="hero" class="hero section dark-background">
 
-    <img src="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?q=80&w=2076" alt="wallpaper de VENTOI">
+    <img src="./view/img/djsander2.webp" alt="wallpaper de VENTOI">
 
     <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">

@@ -1,5 +1,8 @@
 
 
+<!-- Favicons -->
+<link href="./view/img/logo.ico" rel="shortcut icon" type="image/x-icon">
+
 <link href="./view/css/app.css" rel="stylesheet">
 <link href="./view/css/bootstrap.min.css" rel="stylesheet">
 <link href="./view/css/bootstrap-icons.css" rel="stylesheet">

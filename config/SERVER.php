@@ -14,7 +14,7 @@ const PASS="";
 
 /*----------  Nombre de la empresa o compañia ----------*/
 const PHONE = "5491172041071";
-const COMPANY ="DJ Sander González";
+const COMPANY ="DjSanderGonzález";
 const TITTLE ="Sander González | DJ & Content Creator";
 const SLOGAN ="Todo lo que buscas en un solo lugar";
 

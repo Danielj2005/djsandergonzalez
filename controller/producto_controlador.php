@@ -261,7 +261,7 @@ if($modulo == 'Modificar'){
     }
 
     // Obtener imágenes y hashes actuales del producto (fuente de verdad: producto_image)
-    $producto_actual = modeloPrincipal::consultar("SELECT images, image_hash FROM productos WHERE id = $id_producto");
+    $producto_actual = modeloPrincipal::consultar("SELECT img_src AS images, img_hash FROM producto_image WHERE id_producto = $id_producto");
     if (mysqli_num_rows($producto_actual) === 0) {
         alert_model::alerta_simple("¡Ocurrió un error!","No se encontró el producto a modificar.","error");
         exit();
@@ -357,13 +357,19 @@ if($modulo == 'Modificar'){
     }
 
     try {
-        $actualizar = modeloPrincipal::UpdateSQL("productos", "nombre = '$producto', precio = $price, description = '$desc', images = '$images_string', image_hash = '$image_hash_string'", "id = $id_producto");
-
+        $actualizar = modeloPrincipal::UpdateSQL("productos", "nombre = '$producto', precio = $price, description = '$desc'", "id = $id_producto");
+        
         if (!$actualizar) {
             alert_model::alerta_simple("¡Ocurrió un error!","ocurrio un error al actualizar el producto.","error");
             exit();
         }
 
+        $actualizar = modeloPrincipal::UpdateSQL("producto_image", "img_src = '$images_string', img_hash = '$image_hash_string'", "id_producto = $id_producto");
+
+        if (!$actualizar) {
+            alert_model::alerta_simple("¡Ocurrió un error!","ocurrio un error al actualizar el producto.","error");
+            exit();
+        }
         if (is_array($category) && count($category) > 0) {
             modeloPrincipal::DeleteSQL("categorias_productos", "producto_id = $id_producto");
             foreach ($category as $key) {
