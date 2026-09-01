@@ -21,26 +21,26 @@ try {
         $total_row = mysqli_fetch_assoc($total_stmt);
         $total = intval($total_row['total']);
 
-        $catalogo = mysqli_fetch_all(modeloPrincipal::consultar("SELECT id, nombre, precio, images FROM productos WHERE state = 1 ORDER BY nombre ASC LIMIT $per_page OFFSET $offset")); 
+        $catalogo = mysqli_fetch_all(modeloPrincipal::consultar("SELECT id, nombre, precio FROM productos WHERE state = 1 ORDER BY nombre ASC LIMIT $per_page OFFSET $offset")); 
         
         $stmt_categorias = modeloPrincipal::consultar("SELECT nombre FROM categorias WHERE state = 1 ORDER BY nombre ASC");
         $categorias_lista = array_column(mysqli_fetch_all($stmt_categorias, MYSQLI_ASSOC), 'nombre');
         $productosCategorias = []; 
 
         $productos = [];
+        // $images = explode(',', $producto[3]);
+        // $images = $images[0];
         foreach ($catalogo as $producto) {
             $id = $producto[0];
             $nombre = $producto[1];
             $precio = $producto[2];
-            $images = explode(',', $producto[3]);
-            $images = $images[0];
 
             $productos[] = [
                 "id" => $id,
                 "nombre" => ucwords(strtolower($nombre)),
-                "precio" => $precio,
-                "images" => $images
+                "precio" => $precio
             ];
+            // "images" => $images
 
         }
 
@@ -77,12 +77,12 @@ try {
             $total_stmt = modeloPrincipal::consultar($countQuery);
             $total_row = mysqli_fetch_assoc($total_stmt);
             $total = intval($total_row['total']);
-            $query = "SELECT P.id, P.nombre, P.precio, P.images FROM productos AS P INNER JOIN categorias_productos AS CP ON P.id = CP.producto_id INNER JOIN categorias AS C ON C.id = CP.categoria_id $addQuery ORDER BY P.nombre ASC LIMIT $per_page OFFSET $offset";
+            $query = "SELECT P.id, P.nombre, P.precio FROM productos AS P INNER JOIN categorias_productos AS CP ON P.id = CP.producto_id INNER JOIN categorias AS C ON C.id = CP.categoria_id $addQuery ORDER BY P.nombre ASC LIMIT $per_page OFFSET $offset";
         } else {
             $total_stmt = modeloPrincipal::consultar("SELECT COUNT(*) AS total FROM productos WHERE state = 1");
             $total_row = mysqli_fetch_assoc($total_stmt);
             $total = intval($total_row['total']);
-            $query = "SELECT P.id, P.nombre, P.precio, P.images FROM productos AS P WHERE P.state = 1 ORDER BY P.nombre ASC LIMIT $per_page OFFSET $offset";
+            $query = "SELECT P.id, P.nombre, P.precio FROM productos AS P WHERE P.state = 1 ORDER BY P.nombre ASC LIMIT $per_page OFFSET $offset";
         }
 
         $catalogo = mysqli_fetch_all(modeloPrincipal::consultar($query)); 
@@ -96,14 +96,14 @@ try {
             $id = $producto[0];
             $nombre = $producto[1];
             $precio = $producto[2];
-            $images = explode(',', $producto[3]);
-            $images = $images[0];
+            // $images = explode(',', $producto[3]);
+            // $images = $images[0];
 
             $productos[] = [
                 "id" => $id,
                 "nombre" => ucwords(strtolower($nombre)),
                 "precio" => $precio,
-                "images" => $images
+                // "images" => $images
             ];
 
         }

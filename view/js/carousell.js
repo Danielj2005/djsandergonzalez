@@ -2,10 +2,10 @@
 // TODO getInners Esta funcion crea los inners(imagenes dentro del carousel) en base a una url del array original y un estado
 // @param {array} url - array con url de imagenes
 // @param {status} active - estado de la imaagen
-const getInners = (url, active) => `<div class="carousel-item ${active}"> <img src=".${url}" onerror="this.onerror=null; this.src='./img/404.png';" style="width: 35rem; height:35rem; " class="d-block" alt="..."> </div>`;
+const getInners = (url, active) => `<div class="carousel-item ${active}"> <img src=".${url}" onerror="this.src='./img/404.png' style="width: 35rem; height:35rem; " class="d-block" alt="..."> </div>`;
 
 const getImgs = (url, active) => `<li class="carousel-slide ${active}">
-<img src=".${url}" onerror="this.onerror=null; this.src='./img/404.png';" onerror="this.src='ruta/imagen-no-encontrada.jpg'"></li>`;
+<img src=".${url}" onerror="this.src='./img/404.png'"></li>`;
 
 
 /**
@@ -46,7 +46,7 @@ function inicializarCarrusel() {
     function moverAlSlide(index) {
         // Calculamos el desplazamiento exacto en porcentaje
         const desplazamiento = index * -100;
-        track.style.transform = `translateX(${desplazamiento}%)`;
+        document.getElementById('carouselTrack').style.transform = `translateX(${desplazamiento}%)`;
         currentIndex = index;
     }
 
@@ -55,9 +55,7 @@ function inicializarCarrusel() {
         nextButton.addEventListener('click', () => {
             let nextIndex = currentIndex + 1;
             // Si llega al final, vuelve al principio de forma infinita
-            if (nextIndex >= slides.length) {
-            nextIndex = 0;
-            }
+            if (nextIndex >= slides.length) { nextIndex = 0; }
             moverAlSlide(nextIndex);
         });
 
@@ -68,19 +66,18 @@ function inicializarCarrusel() {
         prevButton.addEventListener('click', () => {
             let prevIndex = currentIndex - 1;
             // Si retrocede desde el principio, va al final
-            if (prevIndex < 0) {
-            prevIndex = slides.length - 1;
-            }
+            if (prevIndex < 0) { prevIndex = slides.length - 1; }
             moverAlSlide(prevIndex);
         });
     }
 
     // Opcional: Ajustar el tamaño si la ventana cambia (resposivo nativo)
-    window.addEventListener('resize', () => {
-        moverAlSlide(currentIndex);
-    });
+    window.addEventListener('resize', () => {  moverAlSlide(currentIndex); });
 }
 
 
 // Inicializar cuando el DOM esté listo
-// document.addEventListener('DOMContentLoaded', inicializarCarrusel);
+// document.addEventListener('DOMContentLoaded', () => {
+//     setTimeout( inicializarCarrusel() ,2000);
+    
+// });

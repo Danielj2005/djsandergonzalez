@@ -1,24 +1,19 @@
 <?php require_once "./config/APP.php"; ?>
 
 <!DOCTYPE html>
-<html lang="es" class="dark">
-
+<html lang="es" class="dark" data-bs-theme="light">
 <head>
     <!-- meta tags -->
     <?php require_once './view/inc/catalogo/meta.php'; ?>
     
     <!-- tittle  -->
     <title><?= TITTLE ?></title>
-    
-    <!-- Favicons -->
-    <link href="./view/img/logo.webp" rel="shortcut icon" type="image/x-icon">
-    
     <!-- css styles -->
     <?php require_once './view/inc/catalogo/css.php'; ?>
     
 </head>
 
-<body  class="toggle-sidebar dark:bg-gray-900 bg-gray-900/20 index-page overflow-x-hidden relative">
+<body class="dark:bg-gray-900 bg-gray-400/20 toggle-sidebar index-page overflow-x-hidden relative">
 
     <!-- header Section -->
 
@@ -58,12 +53,12 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content rounded-4 border border-secondary shadow-lg">
+            <div class="dark:bg-slate-800 modal-content rounded-4 border border-secondary shadow-lg">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles de producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="dark:text-slate-200 modal-title fs-5" id="exampleModalLabel">Detalles de producto</h1>
+                    <button type="button" class="dark:bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="m-0 p-3 align-items-center justify-content-around modal-body row" id="modalBody">
+                <div class=" align-items-center justify-content-around modal-body row" id="modalBody">
 
                 </div>
             </div>

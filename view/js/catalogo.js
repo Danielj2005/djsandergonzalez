@@ -2,29 +2,29 @@
 const PHONE = "5491172041071";
 
 const createCatalogo = (id, nombre, precio, urlImage) =>
-    `<div data-categories="" class="product-card product_${id} group bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 animate-slide-up">
+    `<div data-categories="" class="animate-slide-up border border-slate-800 duration-500 group hover:border-purple-500/50 overflow-hidden rounded-3xl dark:shadow-cyan-500/30 shadow-slate-800/30 shadow-xl transition-all product_${id} ">
         <div class="relative overflow-hidden cursor-pointer" style="height: 15rem;">
             <img src="${urlImage}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
             <div class="absolute bottom-0 flex flex-wrap gap-2 items-center">
-                <div class="backdrop-blur-md bg-black/60 border border-white/10 bottom-4 left-4 px-4 py-1 relative rounded-full">
-                    <span class="text-sm font-bold text-white">${precio >= 1.00 ? "$ "+ precio : 'Bajo pedido'}</span>
+                <div class="backdrop-blur-md bg-black/80 border border-white/10 bottom-4 left-4 px-4 py-1 relative rounded-full">
+                    <span class="text-sm font-bold text-white">$${precio}</span>
                 </div>
             </div>
         </div>
         <div class="p-3">
             <div class="">
-                <button onclick="detallesProductoById(${id})" class="text-sm mb-3 text-white font-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">${nombre}</button>
+                <button onclick="detallesProductoById(${id})" class="text-sm mb-3 dark:text-slate-200 text-gray-800 font-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">${nombre}</button>
             </div>
             <div class="row justify-content-center align-items-center">
                 <div class="col-12 mb-3">
-                    <button onclick="detallesProductoById(${id})" type="button" class="btn_details w-full bg-slate-800 hover:bg-purple-600 text-white p-2 rounded-2xl transition-all gap-2 flex items-center justify-center " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="bi bi-eye text-lg"></i> <span class="d-none d-md-block text-sm font-bold">Ver Detalles</span>
+                    <button onclick="detallesProductoById(${id})" type="button" class="bg-slate-800 text-[#fff] btn_details dark:bg-slate-600 dark:hover:bg-slate-300 dark:hover:text-gray-800 dark:text-slate-200 flex gap-2 hover:bg-slate-500 items-center justify-center p-2 rounded-2xl transition w-full" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="bi bi-eye text-lg"></i> Ver Detalles
                     </button> 
                 </div>
                 <div class="col-12 mb-2">
                     <button onclick="askWhatsApp('${nombre}', ${precio}, ${PHONE})" 
-                        type="submit" class="w-full bg-emerald-800 hover:bg-purple-600 text-white p-2 rounded-3xl transition-all flex items-center justify-center gap-2">
-                            <i class="bi bi-whatsapp text-lg"></i> <span class="d-none d-md-block text-sm font-bold">Consultar por WhatsApp</span>
+                        type="submit" class="w-full bg-emerald-800 hover:bg-emerald-600 text-white p-2 rounded-3xl transition flex items-center justify-center gap-2">
+                            <i class="bi bi-whatsapp text-lg"></i> Consultar por WhatsApp
                     </button>
                 </div>
             </div>
@@ -44,7 +44,7 @@ async function getCatalogo(page = 1) {
         const per_page = 16;
 
         // Consultamos al PHP que trae los datos de MySQL
-        const response = await fetch(`./controller/catalogo.php?page=${page}&per_page=${per_page}`);
+        const response = await fetch(`./api/producto/catalogo.php?page=${page}&per_page=${per_page}`);
         if (!response.ok) throw new Error("Error en la petición");
 
         const data = await response.json();
@@ -142,12 +142,19 @@ const detallesProductoById = async (id) => {
 
         modalBody.innerHTML = ``;
 
-        const resp = await fetch(`./controller/producto.php?UID=${id}&details=true`);
+        const resp = await fetch(`./api/producto/detalles.php?UID=${id}&details=true`);
         const detallesProducto = await resp.text();
         
         modalBody.innerHTML = detallesProducto;
+        inicializarCarrusel();
 
     } catch (error) {
-        console.error("No se pudo obtener los detallse del producto:", error);
+        console.error("No se pudo obtener los detalles del producto:", error);
     }
 };
+
+
+
+const renderCatalogo = (productos) => {
+    document.getElementById('producto-cards').innerHTML = productos.map((p) => createCatalogo(p.id, p.nombre, p.precio, p.images)).join('');       
+}
