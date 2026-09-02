@@ -6,19 +6,24 @@
     <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
             <div class="col-lg-9">
+                
+                <div class="flex-column justify-center flex">
+                    <img class="rounded-full w-25" src="./view/img/logo.webp" alt="Logo de <?= COMPANY ?>"
+                        style="position: relative; inset: 0;  display: block; z-index: 1;">
 
-                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-none mb-4">Sander<br><span class="text-cyan-500">González</span></h1>
-                <p>I'm <span >DJ for +6 years | Content Creator</span></p>
-                <p class="text-gray-400 text-lg md:text-xl tracking-widest mb-10">Events | Bars | Private Party`s</p>
+                    <p>I'm <span >DJ for +6 years | Content Creator</span></p>
+                    <p class="text-gray-400 text-lg md:text-xl tracking-widest mb-10">Events | Bars | Private Party`s</p>
+                </div>
+
                 
                 <div class="">
                     
                     <div class="mt-2 d-flex justify-content-start gap-2">
-                        <a target="_blank" class="btn bg-emerald-600 rounded-full" href="https://api.whatsapp.com/send?phone=5491172041071"><i class="text-white bi bi-whatsapp"></i></a>
-                        <a target="_blank" class="btn bg-blue-600 rounded-full" href="#"><i class="text-white bi bi-facebook"></i></a>
-                        <a target="_blank" class="btn bg-gradient-to-r from-yellow-500 from-5% to-fuchsia-700 to-90% rounded-full" href="#"><i class="text-white bi bi-instagram"></i></a>
-                        <a target="_blank" class="btn bg-black rounded-full" href="#"><i class="text-white bi bi-tiktok"></i></a>
-                        <a target="_blank" class="btn bg-red-600 rounded-full" href="#"><i class="text-white bi bi-youtube"></i></a>
+                        <a target="_blank" class="transition btn hover:bg-emerald-900 bg-emerald-600 rounded-full" href="https://api.whatsapp.com/send?phone=5491172041071"><i class="text-white bi bi-whatsapp"></i></a>
+                        <a target="_blank" class="transition btn bg-blue-600 rounded-full hover:bg-blue-900" href="#"><i class="text-white bi bi-facebook"></i></a>
+                        <a target="_blank" class="transition btn bg-gradient-to-r from-yellow-500 from-5% hover:from-yellow-700 to-fuchsia-700 to-90% hover:to-fuchsia-900 rounded-full" href="#"><i class="text-white bi bi-instagram"></i></a>
+                        <a target="_blank" class="transition btn hover:bg-black/20 bg-black/80 rounded-full" href="#"><i class="hover text-white bi bi-tiktok"></i></a>
+                        <a target="_blank" class="transition btn hover:bg-red-900 bg-red-600 rounded-full" href="#"><i class="text-white bi bi-youtube"></i></a>
                     </div>
                 </div>
             </div>

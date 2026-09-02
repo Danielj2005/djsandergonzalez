@@ -11,7 +11,7 @@
 
         <div class="row gy-4 justify-content-center">
             <div class="align-items-center col-lg-4 d-flex justify-content-center justify-content-md-end">
-                <img src="./view/img/logo.webp" class="bg-gray-200 img-fluid rounded-circle w-[15rem]" alt="image of Dj Sander Gonzalez">
+                <img src="./view/img/djsander.jpg" class="bg-gray-200 img-fluid rounded-circle w-[15rem]" alt="image of Dj Sander Gonzalez">
             </div>
             <div class="col-lg-8 content">
                 <h2 class=" dark:text-white">DJ Sander González</h2>

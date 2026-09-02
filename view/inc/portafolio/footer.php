@@ -1,4 +1,4 @@
-<footer id="footer" class="bg-violet-900 dark:bg-gray-900 footer">
+<footer id="footer" class="bg-slate-900 dark:bg-gray-900 footer">
     <div class="p-3 text-center">                
         <h2 class="d-flex align-items-center justify-content-center gap-3 mb-3 ">
             <img class="logo rounded-circle bg-gray-300" src="./view/img/logo.webp" alt="Logo de Ventoi">

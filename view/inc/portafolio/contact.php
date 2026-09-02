@@ -1,5 +1,5 @@
 
-<section id="contact" class="contact section dark:bg-gray-900 pb-2  bg-gray-400/20 ">
+<section id="contact" class="contact section dark:bg-gray-900 pb-2 bg-gray-400/20 ">
 
     <div class="container section-title" data-aos="fade-up">
         <h2 class="dark:text-white">¿Listo para darle ritmo a tu evento?</h2>
