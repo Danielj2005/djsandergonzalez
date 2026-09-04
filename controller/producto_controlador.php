@@ -165,7 +165,7 @@ if($modulo === 'Guardar'){
                 // Obtenemos la extensión del nombre original (ej: "foto.JPG" -> "jpg")
                 $extension = strtolower(pathinfo($files['name'][$key], PATHINFO_EXTENSION));
 
-                $file_hash = md5_file($tmp_name);
+                // $file_hash = md5_file($tmp_name);
                 $name = $file_hash . '_' . $i . ".$extension";
                 $i++;
 
@@ -186,8 +186,10 @@ if($modulo === 'Guardar'){
     }
 
     // 2. Convertir el array de rutas y hashes a un solo string para la BD
-    $images_string = implode(',', $uploaded_paths);
-    $image_hash_string = implode(',', $uploaded_hashes);
+    // $images_string = implode(',', $uploaded_paths);
+    // $image_hash_string = implode(',', $uploaded_hashes);
+    $images_string = $uploaded_paths;
+    $image_hash_string = $uploaded_hashes;
 
     // Se verifica que no se hayan recibido campos vacíos.
     modeloPrincipal::validar_campos_vacios([$producto, $price, $category, $desc]);
@@ -206,7 +208,7 @@ if($modulo === 'Guardar'){
     // se registran los datos del producto
     try {
 
-        $registrar = modeloPrincipal::InsertSQL("productos", "nombre, precio, description, images, image_hash, state", "'$producto', $price, '$desc', '$images_string', '$image_hash_string', 1");
+        $registrar = modeloPrincipal::InsertSQL("productos", "nombre, precio, description, state", "'$producto', $price, '$desc', 1");
 
         if (!$registrar) {
             alert_model::alerta_simple("¡Ocurrió un error!","ocurrio un error al registrar un producto.","error");
@@ -242,7 +244,7 @@ if($modulo === 'Guardar'){
 if($modulo == 'Modificar'){
     
     $id_producto = modeloPrincipal::decryptionId($_POST["id"]);
-    $id_producto = modeloPrincipal::limpiar_cadena($id_producto);
+    // $id_producto = modeloPrincipal::limpiar_cadena($id_producto);
 
     asegurar_tabla_producto_imagen();
 
@@ -253,96 +255,110 @@ if($modulo == 'Modificar'){
     $image = $_POST['image'];
     $desc = $_POST['desc'];
     $imgDeleted = [];
+    $changeImg = isset($_POST['changeImg']) && $_POST['changeImg'] === 'true' ? true : false;
 
-    if (!empty($_POST['imgDeleted'])) {
-        $imgDeleted = array_values(array_filter(array_map(function ($value) {
-            return trim($value);
-        }, explode(',', $_POST['imgDeleted']))));
-    }
 
-    // Obtener imágenes y hashes actuales del producto (fuente de verdad: producto_image)
-    $producto_actual = modeloPrincipal::consultar("SELECT img_src AS images, img_hash FROM producto_image WHERE id_producto = $id_producto");
-    if (mysqli_num_rows($producto_actual) === 0) {
-        alert_model::alerta_simple("¡Ocurrió un error!","No se encontró el producto a modificar.","error");
-        exit();
-    }
-
-    [$existing_images, $existing_hashes] = obtener_imagenes_desde_tabla($id_producto);
-
-    $deleted_image_names = [];
-    foreach ($imgDeleted as $deleted_image) {
-        $deleted_image = trim($deleted_image);
-        if ($deleted_image === '') {
-            continue;
-        }
-
-        $deleted_image_names[] = strtolower(basename($deleted_image));
-    }
-
-    if (!empty($deleted_image_names)) {
-        eliminar_imagenes_producto($id_producto, $deleted_image_names);
-        [$existing_images, $existing_hashes] = obtener_imagenes_desde_tabla($id_producto);
-    }
 
     $uploaded_paths = [];
     $uploaded_hashes = [];
 
-    $siguiente_num = (int) mysqli_fetch_assoc(modeloPrincipal::consultar("SELECT COALESCE(MAX(num_img), 0) AS max_num FROM producto_image WHERE id_producto = $id_producto"))['max_num'] + 1;
+    $final_images = null;
+    $final_hashes = null;
 
-    // 1. Procesar los archivos si existen
-    if (isset($_FILES['image'])) {
-        $files = $_FILES['image'];
-        foreach ($files['tmp_name'] as $key => $tmp_name) {
-            if ($files['error'][$key] === 0 && is_uploaded_file($tmp_name)) {
-                if (!validar_imagen_literal($tmp_name, $files['name'][$key])) {
-                    continue;
-                }
+    if ($changeImg) {
+        // Lógica para manejar el cambio de imágenes
+        if (!empty($_POST['imgDeleted'])) {
+            $imgDeleted = array_values(array_filter(array_map(function ($value) {
+                return trim($value);
+            }, explode(',', $_POST['imgDeleted']))));
+        }
 
-                $file_hash = md5_file($tmp_name);
-
-                if ($file_hash === false) {
-                    continue;
-                }
-
-                if (in_array($file_hash, $existing_hashes, true) || in_array($file_hash, $uploaded_hashes, true)) {
-                    continue;
-                }
-
-                // Obtenemos la extensión del nombre original (ej: "foto.JPG" -> "jpg")
-                $extension = strtolower(pathinfo($files['name'][$key], PATHINFO_EXTENSION));
-
-                $name = $file_hash . '_' . $siguiente_num++ . "." . $extension;
-
-                $target = "../storage/$name";
-                
-                if (move_uploaded_file($tmp_name, $target)) {
-                    $target = "./storage/$name";
-
-                    $uploaded_paths[] = $target;
-                    $uploaded_hashes[] = $file_hash;
+        // Obtener imágenes y hashes actuales del producto (fuente de verdad: producto_image)
+        $producto_actual = modeloPrincipal::consultar("SELECT img_src AS images, img_hash FROM producto_image WHERE id_producto = $id_producto");
+        if (mysqli_num_rows($producto_actual) === 0) {
+            alert_model::alerta_simple("¡Ocurrió un error!","No se encontró el producto a modificar.","error");
+            exit();
+        }
+    
+        [$existing_images, $existing_hashes] = obtener_imagenes_desde_tabla($id_producto);
+    
+        $deleted_image_names = [];
+        foreach ($imgDeleted as $deleted_image) {
+            $deleted_image = trim($deleted_image);
+            if ($deleted_image === '') {
+                continue;
+            }
+    
+            $deleted_image_names[] = strtolower(basename($deleted_image));
+        }
+    
+        if (!empty($deleted_image_names)) {
+            eliminar_imagenes_producto($id_producto, $deleted_image_names);
+            [$existing_images, $existing_hashes] = obtener_imagenes_desde_tabla($id_producto);
+        }
+        
+        $siguiente_num = (int) mysqli_fetch_assoc(modeloPrincipal::consultar("SELECT COALESCE(MAX(num_img), 0) AS max_num FROM producto_image WHERE id_producto = $id_producto"))['max_num'] + 1;
+        
+        /* 
+            seccion mover imagenes al storage local
+        */
+        // 1. Procesar los archivos si existen
+        if (isset($_FILES['image'])) {
+            $files = $_FILES['image'];
+            foreach ($files['tmp_name'] as $key => $tmp_name) {
+                if ($files['error'][$key] === 0 && is_uploaded_file($tmp_name)) {
+                    if (!validar_imagen_literal($tmp_name, $files['name'][$key])) {
+                        continue;
+                    }
+    
+                    $file_hash = md5_file($tmp_name);
+    
+                    if ($file_hash === false) {
+                        continue;
+                    }
+    
+                    if (in_array($file_hash, $existing_hashes, true) || in_array($file_hash, $uploaded_hashes, true)) {
+                        continue;
+                    }
+    
+                    // Obtenemos la extensión del nombre original (ej: "foto.JPG" -> "jpg")
+                    $extension = strtolower(pathinfo($files['name'][$key], PATHINFO_EXTENSION));
+    
+                    $name = $file_hash . '_' . $siguiente_num++ . "." . $extension;
+    
+                    $target = "../storage/$name";
+                    
+                    if (move_uploaded_file($tmp_name, $target)) {
+                        $target = "./storage/$name";
+    
+                        $uploaded_paths[] = $target;
+                        $uploaded_hashes[] = $file_hash;
+                    }
                 }
             }
         }
+    
+        $final_images = $existing_images;
+        $final_hashes = $existing_hashes;
+        
+        $hay_reemplazo_valido = !empty($uploaded_paths);
+    
+    
+        if (!empty($uploaded_paths)) {
+            $final_images = array_merge($final_images, $uploaded_paths);
+            $final_hashes = array_merge($final_hashes, $uploaded_hashes);
+            guardar_imagenes_producto($id_producto, $uploaded_paths, $uploaded_hashes);
+        }
+    
+        if (empty($final_images) && !$hay_reemplazo_valido) {
+            alert_model::alerta_simple("¡Ocurrió un error!", "Si eliminas la última imagen, debes subir al menos una imagen válida como reemplazo antes de guardar.", "error");
+            exit();
+        }
+    
+        // $images_string = implode(',', $final_images);
+        // $image_hash_string = implode(',', $final_hashes);
+
     }
-
-    $final_images = $existing_images;
-    $final_hashes = $existing_hashes;
-
-    $hay_reemplazo_valido = !empty($uploaded_paths);
-
-    if (!empty($uploaded_paths)) {
-        $final_images = array_merge($final_images, $uploaded_paths);
-        $final_hashes = array_merge($final_hashes, $uploaded_hashes);
-        guardar_imagenes_producto($id_producto, $uploaded_paths, $uploaded_hashes);
-    }
-
-    if (empty($final_images) && !$hay_reemplazo_valido) {
-        alert_model::alerta_simple("¡Ocurrió un error!", "Si eliminas la última imagen, debes subir al menos una imagen válida como reemplazo antes de guardar.", "error");
-        exit();
-    }
-
-    $images_string = implode(',', $final_images);
-    $image_hash_string = implode(',', $final_hashes);
 
     // Se verifica que no se hayan recibido campos vacíos.
     // modeloPrincipal::validar_campos_vacios([$producto, $category, $desc]);
@@ -364,12 +380,14 @@ if($modulo == 'Modificar'){
             exit();
         }
 
-        $actualizar = modeloPrincipal::UpdateSQL("producto_image", "img_src = '$images_string', img_hash = '$image_hash_string'", "id_producto = $id_producto");
+        if ($changeImg) {
 
-        if (!$actualizar) {
-            alert_model::alerta_simple("¡Ocurrió un error!","ocurrio un error al actualizar el producto.","error");
-            exit();
+            foreach ($final_images as $i => $ruta) {
+                $actualizar = modeloPrincipal::UpdateSQL("producto_image", "img_src = '".$final_images[$i]."', img_hash = '".$final_hashes[$i]."'", "id_producto = $id_producto");
+            }
         }
+        
+
         if (is_array($category) && count($category) > 0) {
             modeloPrincipal::DeleteSQL("categorias_productos", "producto_id = $id_producto");
             foreach ($category as $key) {

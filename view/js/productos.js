@@ -191,8 +191,6 @@ async function editingProduct(ID) {
 
         document.getElementById('tableModalEdit').innerHTML = dataProductToEdit;
         
-        delete_img_producto();
-
     } catch (error) {
         console.error("Fallo de conexión con BD:", error);
     }
@@ -277,4 +275,3 @@ async function getList_category() {
         console.error("No se encontraron categorías:");
     }
 }
-

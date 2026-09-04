@@ -175,6 +175,12 @@ class producto_model extends modeloPrincipal {
                     </button>
                 </td>
                 <td class="col text-center">
+                    <button em_size="modal-md" em_trigger="edit" em_icon="bi-pencilsquare" em_url="../api/producto/editar_img.php?UID=<?= $mostrar['id'] ?>" em_title="Modificar imagenes de un Producto" 
+                        data-bs-toggle="modal" data-bs-target="#em_lists" class="em_trigger btn btn-secondary text-xs">
+                            <i class="bi bi-pencil-square"></i>
+                    </button>
+                </td>
+                <td class="col text-center">
                     <?php 
                         if ($mostrar["state"] == 1) { ?>
                         <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >

@@ -150,6 +150,7 @@ require_once "../model/categoryModel.php";
                                                     <th class="col text-center" scope="col">Precios</th>
                                                     <th class="col text-center" scope="col">Imagenes</th>
                                                     <th class="col text-center" scope="col">Editar</th>
+                                                    <th class="col text-center" scope="col">Editar Imagenes</th>
                                                     <th class="col text-center" scope="col">Desactivar</th>
                                                 </tr>
                                             </thead>

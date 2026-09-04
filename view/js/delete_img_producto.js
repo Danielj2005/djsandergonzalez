@@ -1,52 +1,28 @@
-
-
-let product_data;
+let imgHasProductArray = [];
 let imgProductDeletedArray = [];
 
-function delete_img_producto () {
+function delete_img_producto (idBtn) {
+    let imgHasProduct = document.getElementById('imgHasProduct').value;
+    imgHasProductArray = imgHasProduct.split(',');
+    let newImg = document.getElementById('fileImg');
+    let imageDeleted = document.getElementById(`${idBtn}`);
+    cant_img_product = imgHasProductArray.length - imgProductDeletedArray.length;
+    let imgProductDeleted = document.getElementById('imgDeleted').value;
 
-    document.querySelectorAll('.delete_image').forEach((btn) => {
-
-        btn.addEventListener('click', () => {
-            
-            let image = btn.querySelector('img');
-            let imgSrc = image.src.split('/')[5];
-            
-            let fileImg = document.getElementById('fileImg');
-            let imgHasProduct = document.getElementById('imgHasProduct').value;
-            imgHasProduct = imgHasProduct.split(',');
-            product_data = imgHasProduct;
-
-            let cant_img_product = product_data.length;
-
-            let imgProductDeleted = document.getElementById('imgDeleted').value;
-
-            if (cant_img_product > 1 && imgProductDeleted.length < cant_img_product && fileImg.files.length < 1) {
-                cant_img_product -= 1;
-                
-                btn.classList.add('d-none');
-                imgProductDeletedArray.push(imgSrc);
-                document.getElementById('imgDeleted').value = imgProductDeletedArray.join(',');
-                
-            }else if (cant_img_product > 0 && fileImg.files.length > 0) {
-                cant_img_product -= 1;
-
-                btn.classList.add('d-none');
-                imgProductDeletedArray.push(imgSrc);
-                document.getElementById('imgDeleted').value = imgProductDeletedArray.join(',');
-                
-                
-            }else {
-                // alert con toastify library
-                Toastify({
-                    text: ' No puedes eliminar todas las imágenes del producto, debes dejar al menos una imagen.',
-                    className: "bi bi-exclamation-triangle-fill text-xl",
-                    duration: 3000,
-                    style: {
-                        background: "#6c757d",
-                    }
-                }).showToast();
-            }
-        })
-    });
+    if (cant_img_product > 1 && imgProductDeletedArray.length < imgHasProductArray.length && newImg.files.length < 1) {
+        cant_img_product -= 1;
+        imageDeleted.classList.add('d-none');
+        imgProductDeletedArray.push(idBtn);
+        document.getElementById('imgDeleted').value = imgProductDeletedArray.join(',');
+        console.log(1);
+    }else if (cant_img_product > 0 && newImg.files.length > 0) {
+        cant_img_product -= 1;
+        imageDeleted.classList.add('d-none');
+        imgProductDeletedArray.push(idBtn);
+        document.getElementById('imgDeleted').value = imgProductDeletedArray.join(',');
+        console.log(2);
+    }else {
+        // alert con toastify library
+        Toastify({ text: ' No puedes eliminar todas las imágenes del producto, debes dejar al menos una imagen.', className: "bi bi-exclamation-triangle-fill text-md]", duration: 3000, }).showToast();
+    }
 }

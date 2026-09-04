@@ -2,7 +2,7 @@
 
     
 <!-- Favicons -->
-<link href="./view/img/logo.ico" rel="shortcut icon" type="image/x-icon">
+<link href="./img/logo.ico" rel="shortcut icon" type="image/x-icon">
 
 <link href="./css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/bootstrap-icons.css" rel="stylesheet">
