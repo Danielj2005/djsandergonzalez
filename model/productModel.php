@@ -118,15 +118,13 @@ class producto_model extends modeloPrincipal {
         }
     }
 
-    public static function lista(int $estado = 1, array $prices = []) {
+    public static function lista(int $estado = 1) {
         
         // se guardan los datos en un array y se imprime
         
         $catalogo = modeloPrincipal::consultar("SELECT id, nombre, precio, state FROM productos WHERE state = $estado ORDER BY nombre ASC"); 
         
         while ($mostrar = mysqli_fetch_assoc($catalogo)) {
-
-            
             $id_producto = $mostrar["id"];
             $categorias = modeloPrincipal::consultar("SELECT C.nombre AS categorias FROM `categorias_productos` AS CP 
                 INNER JOIN categorias AS C ON C.id = CP.categoria_id

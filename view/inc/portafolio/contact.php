@@ -29,7 +29,7 @@
                         <a class="group-hover:text-green-500 text-green-500 dark:group-hover:text-white" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            href="https://api.whatsapp.com/send?phone=5491172041071&text=Hola%20DJ%20Sander,%20quiero%20cotizar%20la%20musicalizaci%C3%B3n%20de%20mi%20evento."> Escríbeme
+                            href="https://api.whatsapp.com/send?phone=<?= PHONE ?>&text=Hola%20DjSanderGonzalez,%20quiero%20cotizar%20la%20musicalizaci%C3%B3n%20de%20mi%20evento."> Escríbeme
                         </a>
                     </div>                    
                 </div>

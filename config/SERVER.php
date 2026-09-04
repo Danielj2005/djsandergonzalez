@@ -7,10 +7,10 @@ const USER="root";
 const PASS="";
 
 
-// const SERVER="sql102.infinityfree.com";
-// const DB="if0_42366337_demo_catalogo";
-// const USER="if0_42366337";
-// const PASS="NFvia14QJzp";
+// const SERVER="sql300.infinityfree.com";
+// const DB="if0_42834236_djsander";
+// const USER="if0_42834236";
+// const PASS="HZnAGXHXUj9dM";
 
 /*----------  Nombre de la empresa o compañia ----------*/
 const PHONE = "5491172041071";

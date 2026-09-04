@@ -141,8 +141,8 @@ require_once "../model/categoryModel.php";
                                         </ul>
                                     </div>
 
-                                    <div id="tableListProducts" class="justify-content-between align-items-center table table-responsive dark:text-slate-200">
-                                        <table class="table example mb-3 dark:text-slate-200" id="example">
+                                    <div id="containerListProducts" class="justify-content-between align-items-center table table-responsive dark:text-slate-200">
+                                        <table class="table example mb-3 dark:text-slate-200" id="tableListProducts">
                                             <thead>
                                                 <tr>
                                                     <th class="col text-center" scope="col">N.º</th>
@@ -155,7 +155,6 @@ require_once "../model/categoryModel.php";
                                                 </tr>
                                             </thead>
                                             <tbody> 
-                                                <?php producto_model::lista(); ?>
 
                                             </tbody>
                                         </table>

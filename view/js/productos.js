@@ -101,78 +101,49 @@ async function getProductos() {
         
         const isMobile = /iPhone|Android/i.test(navigator.userAgent);
         // Consultamos al PHP que trae los datos de MySQL
-        const catizacion = await scrappCoin();
         
         if (isMobile) {
             // En móviles, mejor cambiar la ubicación de la pestaña actual
-            document.getElementById('activos').remove();
-            document.getElementById('inactivos').remove();
+            document.getElementById('tableListProducts').classList.add('d-none');
 
-            const [active, inactive] = await Promise.all([
-                fetch(`../controller/listaProductos.php`,{
-                    method: "POST", 
-                    body: JSON.stringify({ UID: 2, state: 1, prices: catizacion })
-                }),
-                fetch(`../controller/listaProductos.php`,{
-                    method: "POST", 
-                    body: JSON.stringify({ UID: 2, state: 0, prices: catizacion })
-                })
-
-            ]);
+            const active = await fetch(`../controller/listaProductos.php`,{ method: "POST",  body: JSON.stringify({ UID: 2, state: 1 })  });
 
             const productosActivos = await active.text();
-            const productosInactivos = await inactive.text();
 
             // se crean los elementos contenedores de las cards de los productos
             const cardsProductosActivos = document.createElement('div');
-            const cardsProductosInactivos = document.createElement('div');
-            
+
             // se asignan las clases css de los contenedores de las cards de los productos
-            cardsProductosActivos.className = "grid gap-3 justify-around grid-cols-2 md:grid-cols-4";
-            cardsProductosInactivos.className = "d-none grid gap-3 justify-around grid-cols-2 md:grid-cols-4";
-            
+            cardsProductosActivos.className = "grid gap-3 justify-around grid-cols-1 md:grid-cols-4";
+
             // se asignan las ID de los contenedores cards de los productos
             cardsProductosActivos.id = "cards_activos";
-            cardsProductosInactivos.id = "cards_inactivos";
 
             // btn.addEventListener('click', () => filterByCategory(categoria));
             
             cardsProductosActivos.innerHTML = productosActivos; 
-            cardsProductosInactivos.innerHTML = productosInactivos;
             
-            document.getElementById('main-content').appendChild(cardsProductosActivos);
-            document.getElementById('main-content').appendChild(cardsProductosInactivos);
+            document.getElementById('containerListProducts').appendChild(cardsProductosActivos);
             SendFormAjax();
-            
+
         } else {
             // En PC, abrimos pestaña nueva
-            const [active, inactive] = await Promise.all([
-                fetch(`../controller/listaProductos.php`,{
+            const active = await fetch(`../controller/listaProductos.php`,{
                     method: "POST", 
-                    body: JSON.stringify({ UID: 1, state: 1, prices: catizacion })
-                }),
-                fetch(`../controller/listaProductos.php`,{
-                    method: "POST", 
-                    body: JSON.stringify({ UID: 1, state: 0, prices: catizacion })
-                })
-            ]);
+                    body: JSON.stringify({ UID: 1, state: 1})
+                });
             
             const productosActivos = await active.text();
-            const productosInactivos = await inactive.text();
         
             // En PC, abrimos pestaña nueva
     
-            let tbodyProductosActivos = document.querySelector('#activos tbody');
-            let tbodyProductosInactivos = document.querySelector('#inactivos tbody');
+            let tbodyProductosActivos = document.querySelector('#tableListProducts tbody');
     
             tbodyProductosActivos.innerHTML = productosActivos;
-            tbodyProductosInactivos.innerHTML = productosInactivos;
 
             tableProductosActivos = tbodyProductosActivos.innerHTML; // Guardamos el HTML original para futuras actualizaciones
-            tableProductosInactivos = tbodyProductosInactivos.innerHTML; // Guardamos el HTML original para futuras actualizaciones
-    
-            dataTable("tableActivos");
-            dataTable("tableInactivos");
+
+            dataTable();
             SendFormAjax();
         }
 

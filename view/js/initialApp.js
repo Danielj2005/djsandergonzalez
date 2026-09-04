@@ -145,7 +145,7 @@ window.filterByCategory = (categoryName) => {
 // Ejecutar al cargar la página o el modal
 document.addEventListener('DOMContentLoaded', () => {
     initCustomSelect();
-    // getProductos();
+    getProductos();
 
     
 });
