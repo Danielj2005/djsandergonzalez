@@ -22,7 +22,7 @@ try {
             $products = $products[0];
 
             // Ruta de la carpeta de imágenes
-            $imagenes = mysqli_fetch_array(modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id_producto = $id")); 
+            $imagenes = modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id_producto = $id"); 
             // $files = explode(",",$products['images']);  
             $quety = $products;
             
@@ -31,14 +31,14 @@ try {
                 <div class="custom-carousel">
                     <div class="carousel-track-container">
                         <ul class="carousel-track" id="carouselTrack">
-                            <?php foreach ($imagenes as $img => $val) { ?>
+                            <?php while ($img = mysqli_fetch_array($imagenes)) { ?>
                                 <li class="carousel-slide ${active}">
-                                    <img src="<?= $val ?>" onerror="this.src='ruta/imagen-no-encontrada.jpg'">
+                                    <img src="<?= $img['img_src'] ?>" onerror="this.src='ruta/imagen-no-encontrada.jpg'">
                                 </li>
                             <?php  } ?>
                         </ul>
                     </div>
-                    <?php if (count($imagenes) > 1) { ?>
+                    <?php if (mysqli_num_rows($imagenes) > 1) { ?>
                         <button class="carousel-button prev-btn" id="prevBtn">&#10094;</button>
                         <button class="carousel-button next-btn" id="nextBtn">&#10095;</button>
                     <?php  } ?>

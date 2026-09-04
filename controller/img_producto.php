@@ -82,27 +82,30 @@ function eliminar_imagenes_producto($id_producto, $imgDeleted) {
 if($modulo == 'Modificar'){
     
     $id_producto = modeloPrincipal::decryptionId($_POST["id"]);
-    $imgDeleted = explode(',', $_POST['imgDeleted']) ?? null;
+    $imgDeleted = $_POST['imgDeleted'] ?? '';
     $imgHasProduct = $_POST['imgHasProduct'];
 
     $uploaded_paths = [];
     $uploaded_hashes = [];
-
-    $final_images = null;
-    $final_hashes = null;
-
-
+    
     // Obtener imágenes y hashes actuales del producto (fuente de verdad: producto_image)
     $producto_actual = modeloPrincipal::consultar("SELECT img_hash FROM producto_image WHERE id_producto = $id_producto");
     if (mysqli_num_rows($producto_actual) === 0) {
         alert_model::alerta_simple("¡Ocurrió un error!","No se encontró el producto a modificar.","error");
         exit();
     }
+    
     $producto_actual = mysqli_fetch_array($producto_actual);
     // imagenes a eliminar
+    echo 123;
+
     if (!empty($imgDeleted)) {
+        $imgDeleted = explode(',', $imgDeleted);
         eliminar_imagenes_producto($id_producto, $imgDeleted);
+        echo 456;
     }
+    
+    echo 789789;
 
     /* 
         seccion mover imagenes al storage local
@@ -144,34 +147,16 @@ if($modulo == 'Modificar'){
     }
     
     $hay_reemplazo_valido = !empty($uploaded_paths);
-
-    /* terminar las validaciones de subir las imagenes y registrarlas en la bd */
-    if (!empty($uploaded_paths)) {
-        $final_images = array_merge($final_images, $uploaded_paths);
-        $final_hashes = array_merge($final_hashes, $uploaded_hashes);
-        guardar_imagenes_producto($id_producto, $uploaded_paths, $uploaded_hashes);
-    }
-
-    if (empty($final_images) && !$hay_reemplazo_valido) {
+    // en caso de que no suban imagenes nuevas dara una alerta
+    if (empty($_FILES['image']) && !$hay_reemplazo_valido) {
         alert_model::alerta_simple("¡Ocurrió un error!", "Si eliminas la última imagen, debes subir al menos una imagen válida como reemplazo antes de guardar.", "error");
         exit();
     }
 
-    // $images_string = implode(',', $final_images);
-    // $image_hash_string = implode(',', $final_hashes);
-
-
     try {
-        if (!$actualizar) {
-            alert_model::alerta_simple("¡Ocurrió un error!","ocurrio un error al actualizar el producto.","error");
-            exit();
+        foreach ($uploaded_paths as $i => $ruta) {
+            $actualizar = modeloPrincipal::InsertSQL("producto_image", "img_src , img_hash ,id_producto", "'$ruta', '$uploaded_hashes[$i]', $id_producto");
         }
-
-        foreach ($final_images as $i => $ruta) {
-            $actualizar = modeloPrincipal::UpdateSQL("producto_image", "img_src = '".$final_images[$i]."', img_hash = '".$final_hashes[$i]."'", "id_producto = $id_producto");
-        }
-        
-
         alert_model::alert_mod_success();
         exit();
     } catch (Exception $e) {
