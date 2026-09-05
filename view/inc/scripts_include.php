@@ -63,33 +63,10 @@
 <script src="./js/cerrar_sesion.js"></script> <!-- script para cerrar sesion -->
 <script src="./js/toastify.js"></script> <!-- script para import la libreria de alertas toastify -->
 
-<script type="text/javascript">
-
-    // funcion para eliminar un elemento del html
-    document.addEventListener('DOMContentLoaded', () => {
-        const alertHistoryt = document.querySelectorAll('.alert-history');
-        alertHistoryt.forEach(alert => {
-            alert.addEventListener('click', () => {
-                // alert con toastify library
-                Toastify({
-                    text: ' Este proveedor se encuentra sin un historial de compras.',
-                    className: "bi bi-exclamation-triangle-fill fs-5",
-                    duration: 3000,
-                    style: {
-                        background: "#6c757d",
-                    }
-                }).showToast();
-            });
-        });
-        
-    });
-</script>
-
-
 <script type="text/javascript" src="js/dark_mode.js"></script>
 
 <script type="text/javascript" src="js/productos.js"></script>
 <script type="text/javascript" src="js/carousell.js"></script>
 <script type="text/javascript" src="js/initialApp.js"></script>
 <script type="text/javascript" src="js/delete_img_producto.js"></script>
-<script src="./js/easy_modal_v1.js"></script>
+<script type="text/javascript" src="./js/easy_modal_v1.js"></script>

@@ -104,27 +104,23 @@ async function getProductos() {
         
         if (isMobile) {
             // En móviles, mejor cambiar la ubicación de la pestaña actual
-            document.getElementById('tableListProducts').classList.add('d-none');
+            document.getElementById('containerTableListProducts').classList.add('d-none');
 
             const active = await fetch(`../controller/listaProductos.php`,{ method: "POST",  body: JSON.stringify({ UID: 2, state: 1 })  });
-
             const productosActivos = await active.text();
 
             // se crean los elementos contenedores de las cards de los productos
             const cardsProductosActivos = document.createElement('div');
-
             // se asignan las clases css de los contenedores de las cards de los productos
             cardsProductosActivos.className = "grid gap-3 justify-around grid-cols-1 md:grid-cols-4";
-
             // se asignan las ID de los contenedores cards de los productos
             cardsProductosActivos.id = "cards_activos";
-
-            // btn.addEventListener('click', () => filterByCategory(categoria));
-            
             cardsProductosActivos.innerHTML = productosActivos; 
             
             document.getElementById('containerListProducts').appendChild(cardsProductosActivos);
             SendFormAjax();
+            listeninEasyModalCall();
+
 
         } else {
             // En PC, abrimos pestaña nueva
@@ -132,7 +128,6 @@ async function getProductos() {
                     method: "POST", 
                     body: JSON.stringify({ UID: 1, state: 1})
                 });
-            
             const productosActivos = await active.text();
         
             // En PC, abrimos pestaña nueva

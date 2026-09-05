@@ -95,12 +95,7 @@ function updateEasyModal (em_title, em_icon, em_size, em_target) {
 }
 
 
-// Ejecutar al cargar la página o el modal
-document.addEventListener('DOMContentLoaded', () => {
-    // create modal and add to the body of document
-    easyModal ();
-    
-    // buscar disparadores de funcionalidad Easy_Modal
+function listeninEasyModalCall () {
     document.querySelectorAll('.em_trigger').forEach((trigger) => {
         trigger.addEventListener('click', async () => {
             let target = trigger.getAttribute('em_trigger') ?? null;
@@ -123,5 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     });
+}
+
+// Ejecutar al cargar la página o el modal
+document.addEventListener('DOMContentLoaded', () => {
+    // create modal and add to the body of document
+    easyModal ();
     
+    // buscar disparadores de funcionalidad Easy_Modal
+    listeninEasyModalCall();
 });

@@ -141,7 +141,7 @@ require_once "../model/categoryModel.php";
                                         </ul>
                                     </div>
 
-                                    <div id="containerListProducts" class="justify-content-between align-items-center table table-responsive dark:text-slate-200">
+                                    <div id="containerTableListProducts" class="justify-content-between align-items-center table table-responsive dark:text-slate-200">
                                         <table class="table example mb-3 dark:text-slate-200" id="tableListProducts">
                                             <thead>
                                                 <tr>
@@ -162,7 +162,9 @@ require_once "../model/categoryModel.php";
                                 </div>
                             </div>
                         </div>
-                    </>
+            
+                        <div id="containerListProducts" class="text-center col-12 mb-3"></div>
+                    </div>
                 </section>
             </main>
 

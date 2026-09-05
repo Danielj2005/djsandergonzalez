@@ -43,7 +43,7 @@ try {
                 ?>
 
 
-                <div data-categories="" class="product-card product_${id} group bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 animate-slide-up">
+                <div data-categories="" class="producto_<?= $id_producto ?> animate-slide-up border border-slate-800 duration-500 group hover:border-purple-500/50 overflow-hidden rounded-3xl dark:shadow-cyan-500/30 shadow-slate-800/30 shadow-xl transition-all">
                     
                     <div class="overflow-hidden cursor-pointer">
                         <img src=".<?= $imagen ?>" onerror="this.src='./img/404.png'">
@@ -51,42 +51,38 @@ try {
 
 
                     <div class="p-3">
-                        <div class="">
-                            <button onclick="detallesProductoById()" class="text-sm mb-3 text-white font-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal"> <?= ucwords(strtolower($mostrar["nombre"])) ?> </button>
+                        <div class="text-start">
+                            <button onclick="detallesProductoById()" class="text-sm mb-3 dark:text-slate-200 text-gray-800 font-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal"> <?= ucwords(strtolower($mostrar["nombre"])) ?> </button>
                         </div>
                         
-                        <div class="">
-                            <div class="align-items-center gap-2 justify-content-start mb-3 row">
-
-                                <div class="mb-2"> 
-                                    <button class="btn btn-success px-1 py-0" id="basic-addon2" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
-                                        <spna><?= "$ ".$mostrar["precio"]; ?></span>
-                                        <i class="text-white btn bi bi-copy"></i>
-                                    </button>
-                                </div>
+                        
+                        <div class="flex flex-wrap justify-around items-center gap-3">
+                            
+                            <div class="mb-2">
+                                <button class="btn cursor-pointer rounded-full bg-blue-700 dark:text-white text-slate-200" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
+                                    <spna><?= "$ ".$mostrar["precio"]; ?></span>
+                                    <i class="text-[#fff] btn bi bi-copy"></i>
+                                </button>
                             </div>
-                        </div>
-
-
-                        <div class="flex flex-wrap justify-between">
-                            <div class="mb-3">
-                                <button onclick="editingProduct('<?= modeloPrincipal::encryptionId($mostrar['id']) ?>')" type="button" class="text-sm btn_details btn btn-outline-warning transition-all gap-2 flex items-center justify-center " data-bs-toggle="modal" data-bs-target="#editar_producto">
+                            <div class="mb-2">
+                                <button onclick="editingProduct('<?= modeloPrincipal::encryptionId($mostrar['id']) ?>')" type="button" class="rounded-full btn_details btn btn-warning transition-all gap-2 flex items-center justify-center " data-bs-toggle="modal" data-bs-target="#editar_producto">
                                     <i class="bi bi-pencil-square"></i>
-                                    <span class="d-none d-md-block font-bold"> Editar</span>
+                                    <span class=""> Editar</span>
                                 </button> 
                             </div>
-                            <td>
-                                <button onclick="verImagen('<?= $imgsrc ; ?>','<?= $mostrar['nombre'] ?>' )" class="btn btn-secondary text-xs">
+                            <div class="mb-2">
+                                <button onclick="verImagen('<?= $imgsrc ; ?>','<?= $mostrar['nombre'] ?>' )" class="rounded-full btn btn-secondary transition-all gap-2 flex items-center justify-center" data-bs-toggle="modal" data-bs-target="#ver_imagenes">
                                     <i class="bi bi-image mr-1"></i> 
-                                    <span class="small d-none d-md-block">Ver Imagen</span>
+                                    <span class="">Ver Imagen</span>
                                 </button>
-                            </td>
-                            <td class="col text-center">
+                            </div>
+                            <div class="mb-2">
                                 <button em_size="modal-md" em_trigger="edit" em_icon="bi-pencilsquare" em_url="../api/producto/editar_img.php?UID=<?= $mostrar['id'] ?>" em_title="Modificar imagenes de un Producto" 
-                                    data-bs-toggle="modal" data-bs-target="#em_lists" class="em_trigger btn btn-secondary text-xs">
+                                    data-bs-toggle="modal" data-bs-target="#em_lists" class="rounded-full em_trigger btn bg-slate-800 dark:text-white text-slate-200">
                                         <i class="bi bi-pencil-square"></i>
+                                        <span class="">Editar Imagen</span>
                                 </button>
-                            </td>
+                            </div>
 
                             <div class="mb-2">
                                 <?php if ($mostrar["state"] == 1) { ?>
@@ -94,7 +90,7 @@ try {
                                     <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
                                         <input type="hidden" name="modulo" value="activo">          
                                         <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
-                                        <button class="btn btn-outline-danger bi bi-x-circle text-sm" title="estado del producto" type="submit"> </button>
+                                        <button class="rounded-full btn btn-danger bi bi-x-circle text-sm" title="estado del producto" type="submit"> Desactivar</button>
                                     </form>
 
                                 <?php } else { ?>
@@ -102,7 +98,7 @@ try {
                                     <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
                                         <input type="hidden" name="modulo" value="inactivo">          
                                         <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
-                                        <button class="btn btn-success bi bi-check-circle text-sm" title="estado del producto"> </button>
+                                        <button class="rounded-full btn btn-success bi bi-check-circle text-sm" title="estado del producto"> Activar</button>
                                     </form>
 
                                 <?php }  ?>

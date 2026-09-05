@@ -139,7 +139,6 @@ include_once "./model/mainModel.php"; // se incluye el model principal
     <script src="view/js/bootstrap.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="view/js/sweetalert2.min.js"></script>
-    <script src="view/js/DanikatAlert.js"></script>
     <script src="view/js/hiddenInput.js"></script>
     <script src="view/js/SendForm.js"></script>
     <script> SendFormAjax(); </script>
