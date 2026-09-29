@@ -140,6 +140,7 @@ async function getProductos() {
 
             dataTable();
             SendFormAjax();
+            listeninEasyModalCall();
         }
 
 

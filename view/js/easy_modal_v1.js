@@ -113,8 +113,10 @@ function listeninEasyModalCall () {
             const data = await response.text();
             document.getElementById('em_body_lists').innerHTML = data;
 
-            dataTable('em_tale_data');
+            dataTable('em_table_data');
             SendFormAjax();
+
+
 
         });
     });
@@ -126,5 +128,26 @@ document.addEventListener('DOMContentLoaded', () => {
     easyModal ();
     
     // buscar disparadores de funcionalidad Easy_Modal
-    listeninEasyModalCall();
+    document.querySelectorAll('.em_trigger').forEach((trigger) => {
+        trigger.addEventListener('click', async () => {
+            let target = trigger.getAttribute('em_trigger') ?? null;
+            let url = trigger.getAttribute('em_url') ?? null;
+            let title = trigger.getAttribute('em_title') ?? null;
+            let icon = trigger.getAttribute('em_icon') ?? null;
+            let size = trigger.getAttribute('em_size') ?? null;
+
+            updateEasyModal (title, icon, size, target);
+            
+            // Consultamos al PHP que trae los datos de MySQL
+            let response = await fetch(url);
+
+            if (!response.ok) throw new Error("Error en la petición");
+            const data = await response.text();
+            document.getElementById('em_body_lists').innerHTML = data;
+
+            dataTable('em_tale_data');
+            SendFormAjax();
+
+        });
+    });
 });

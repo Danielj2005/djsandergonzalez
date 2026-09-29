@@ -63,7 +63,7 @@ function eliminar_imagenes_producto($id_producto, $imgDeleted) {
 
     foreach ($imgDeleted as $key => $value) {
         $query = mysqli_fetch_assoc(modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id_producto = $id_producto AND id = $value"));
-    
+        echo $value;
         $img_src = trim($query['img_src']);
         $nombre_archivo = strtolower(basename($img_src));
 
@@ -97,16 +97,12 @@ if($modulo == 'Modificar'){
     
     $producto_actual = mysqli_fetch_array($producto_actual);
     // imagenes a eliminar
-    echo 123;
 
     if (!empty($imgDeleted)) {
         $imgDeleted = explode(',', $imgDeleted);
         eliminar_imagenes_producto($id_producto, $imgDeleted);
-        echo 456;
     }
     
-    echo 789789;
-
     /* 
         seccion mover imagenes al storage local
     */

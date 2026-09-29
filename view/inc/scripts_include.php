@@ -69,4 +69,4 @@
 <script type="text/javascript" src="js/carousell.js"></script>
 <script type="text/javascript" src="js/initialApp.js"></script>
 <script type="text/javascript" src="js/delete_img_producto.js"></script>
-<script type="text/javascript" src="./js/easy_modal_v1.js"></script>
+<script type="text/javascript" src="js/easy_modal_v1.js"></script>
