@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.text();
             document.getElementById('em_body_lists').innerHTML = data;
 
-            dataTable('em_tale_data');
+            dataTable('em_table_data');
             SendFormAjax();
 
         });

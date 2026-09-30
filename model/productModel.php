@@ -156,7 +156,7 @@ class producto_model extends modeloPrincipal {
                     </small>
                 </td>
                 <td class="text-center">
-                    <div class="cursor-pointer rounded-full bg-blue-700 mb-2 dark:text-white text-slate-200" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
+                    <div class="cursor-pointer mb-2 dark:text-white text-slate-200" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
                         <?= "$ ".$mostrar["precio"]; ?>
                     </div>
                 </td>

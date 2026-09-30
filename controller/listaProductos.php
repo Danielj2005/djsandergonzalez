@@ -59,7 +59,7 @@ try {
                         <div class="flex flex-wrap justify-around items-center gap-3">
                             
                             <div class="mb-2">
-                                <button class="btn cursor-pointer rounded-full bg-blue-700 dark:text-white text-slate-200" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
+                                <button class="btn cursor-pointer dark:text-white text-slate-200" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
                                     <spna><?= "$ ".$mostrar["precio"]; ?></span>
                                     <i class="text-[#fff] btn bi bi-copy"></i>
                                 </button>

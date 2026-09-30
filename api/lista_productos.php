@@ -14,12 +14,12 @@ try {
         $estado = $_GET['UID']; ?>
     
             <div id="tableList" class=" dark:text-slate-200 justify-content-between align-items-center table table-responsive">
-                <table class="dark:text-slate-200 table tableListModal mb-3 em_tale_data" id="tableListModal">
+                <table class="em_table_data dark:text-slate-200 table tableListModal mb-3" id="tableListModal">
                     <thead>
                         <tr>
                             <th class="col text-center" scope="col">N.º</th>
                             <th class="col text-center" scope="col">Producto</th>
-                            <th class="col text-center" scope="col">Precios</th>
+                            <th class="col text-center" scope="col">Precio</th>
                             <th class="col text-center" scope="col">Imagenes</th>
                             <th class="col text-center" scope="col">Editar</th>
                             <th class="col text-center" scope="col">Activar</th>
