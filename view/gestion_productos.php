@@ -127,9 +127,7 @@ $estado = $_POST['estado'] ?? 1;
                                                     <th class="col text-center" scope="col">Producto</th>
                                                     <th class="col text-center" scope="col">Precio</th>
                                                     <th class="col text-center" scope="col">Imagenes</th>
-                                                    <th class="col text-center" scope="col">Editar</th>
-                                                    <th class="col text-center" scope="col">Editar Imagenes</th>
-                                                    <th class="col text-center" scope="col"><?= $estado == 1 ? 'Desactivar' : 'Activar'; ?> </th>
+                                                    <th class="col text-center" scope="col">Acciones de producto</th>
                                                 </tr>
                                             </thead>
                                             <tbody> 

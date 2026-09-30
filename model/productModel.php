@@ -156,43 +156,46 @@ class producto_model extends modeloPrincipal {
                     </small>
                 </td>
                 <td class="text-center">
-                    <div class="cursor-pointer mb-2 dark:text-white text-slate-200" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
-                        <?= "$ ".$mostrar["precio"]; ?>
-                    </div>
+                    <button class="cursor-pointer mb-2 dark:text-white text-slate-800" onclick="copyToClipboard('<?= $mostrar['precio']; ?>')">
+                        <spna><?= "$ ".$mostrar["precio"]; ?></span>
+                        <i class="text-slate-800 dark:text-[#fff] btn bi bi-copy"></i>
+                    </button>
                 </td>
-                <td>
-                    <button onclick="verImagen('<?= $imgsrc ; ?>','<?= $mostrar['nombre'] ?>' )" class="btn btn-secondary text-xs">
+
+                <td class="col text-center gap-2 flex flex-col justify-center items-center">
+                    <button onclick="verImagen('<?= $imgsrc ; ?>','<?= $mostrar['nombre'] ?>' )" class="mb-2 flex items-center justify-center btn btn-secondary text-xs">
                         <i class="bi bi-image mr-1"></i> 
-                        <span class="small d-none d-md-block">Ver Imagen</span>
+                        <span class="small d-none d-md-block"> &nbsp;Ver Imagen</span>
                     </button>
-                </td>
-                <td class="col text-center">
-                    <button data-bs-toggle="modal" data-bs-target="#editar_producto"
-                        onclick="editingProduct('<?= modeloPrincipal::encryptionId($mostrar['id']) ?>')" class="btn_edit_produto btn btn-warning text-xs">
-                            <i class="bi bi-pencil-square"></i>
-                    </button>
-                </td>
-                <td class="col text-center">
+                    
                     <button em_size="modal-md" em_trigger="edit" em_icon="bi-pencilsquare" em_url="../api/producto/editar_img.php?UID=<?= $mostrar['id'] ?>" em_title="Modificar imagenes de un Producto" 
-                        data-bs-toggle="modal" data-bs-target="#em_lists" class="em_trigger btn btn-secondary text-xs">
+                        data-bs-toggle="modal" data-bs-target="#em_lists" class="mb-2 flex items-center justify-center em_trigger btn btn-warning text-xs">
                             <i class="bi bi-pencil-square"></i>
+                            <span class="small d-none d-md-block"> &nbsp;Editar</span>
                     </button>
                 </td>
+
                 <td class="col text-center">
-                    <?php 
-                        if ($mostrar["state"] == 1) { ?>
-                        <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
-                            <input type="hidden" name="modulo" value="activo">          
-                            <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
-                            <button class="btn btn-danger bi bi-x-circle text-xs" title="estado del producto" type="submit"> </button>
-                        </form>
+                    <div class="gap-2 flex flex-col justify-center items-center">
+                        <button data-bs-toggle="modal" data-bs-target="#editar_producto"
+                            onclick="editingProduct('<?= modeloPrincipal::encryptionId($mostrar['id']) ?>')" class="flex items-center justify-center mb-2 btn_edit_produto btn btn-warning text-xs bi bi-pencil-square">
+                                <span class="small d-none d-md-block"> &nbsp;Editar</span>
+                        </button>
+                        
+                        <?php if ($mostrar["state"] == 1) { ?>
+                            <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
+                                <input type="hidden" name="modulo" value="activo">          
+                                <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
+                                <button class="btn btn-danger bi bi-x-circle text-xs" title="estado del producto" type="submit"><?= $mostrar["state"] == 1 ? ' Desactivar' : ' Activar'; ?>  </button>
+                            </form>
                         <?php } else { ?>
-                        <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
-                            <input type="hidden" name="modulo" value="inactivo">          
-                            <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
-                            <button class="btn btn-success bi bi-check-circle text-xs" title="state de la categoría"> </button>
-                        </form>
-                    <?php }  ?>
+                            <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
+                                <input type="hidden" name="modulo" value="inactivo">          
+                                <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
+                                <button class="btn btn-success bi bi-check-circle text-xs" title="state de la categoría"> <?= $mostrar["state"] == 1 ? ' Desactivar' : ' Activar'; ?> </button>
+                            </form>
+                        <?php }  ?>
+                    </div>
                 </td>
             </tr>
         <?php } 
