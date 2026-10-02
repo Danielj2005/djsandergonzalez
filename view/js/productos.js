@@ -5,8 +5,6 @@ let tableProductosInactivos = ``;
 
 let estado = { productState: true, };
 
-
-
 const createCatalogo = (id, nombre, precio, urlImage) =>
     `<div data-categories="" class="product-card product_${id} group bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 animate-slide-up">
         <div class="relative overflow-hidden cursor-pointer" style="height: 15rem;">

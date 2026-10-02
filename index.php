@@ -1,4 +1,4 @@
-<?php require_once "./config/APP.php"; ?>
+<?php require_once "./config/SERVER.php"; ?>
 
 <!DOCTYPE html>
 <html lang="es" class="dark">

@@ -5,6 +5,7 @@
 
 <link href="./view/css/bootstrap.min.css" rel="stylesheet">
 <link href="./view/css/bootstrap-icons.css" rel="stylesheet">
+<link href="./view/css/carousel.css" rel="stylesheet">
 <link href="./view/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
 <link href="./view/css/animate.min.css" rel="stylesheet">

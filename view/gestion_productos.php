@@ -142,6 +142,7 @@ $estado = $_POST['estado'] ?? 1;
                                 </div>
                             </div>
                         </div>
+
                         <?php if (preg_match('/iPhone|Android/i', $userAgent)) { ?>
                             
                             <div id="containerListProducts" class="text-center col-12 mb-3">
@@ -236,6 +237,7 @@ $estado = $_POST['estado'] ?? 1;
                                 </div>
                             </div>
                         <?php } ?>
+                        
                     </div>
                 </section>
             </main>

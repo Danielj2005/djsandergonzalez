@@ -37,7 +37,7 @@ try {
                     <label class="dark:text-slate-200 col-form-label">Imagenes del producto </label>
                     <div class="border border-secondary p-2 rounded-3 d-flex flex-wrap gap-3 justify-content-start overflow-hidden overflow-x-auto">
                         <?php while ($img = mysqli_fetch_array($imagenes)) { ?>
-                            <button id="<?= $img['id'] ?>" type="button" onclick="delete_img_producto(<?= $img['id'] ?>)" class="delete_image position-relative align-items-center btn btn-outline-danger d-flex justify-content-center">
+                            <button id="<?= modeloPrincipal::encryptionId($img['id']) ?>" type="button" onclick="delete_img_producto('<?= modeloPrincipal::encryptionId($img['id']) ?>')" class="delete_image position-relative align-items-center btn btn-outline-danger d-flex justify-content-center">
                                 <img src=".<?= $img['img_src']; ?>" style="width: 5rem; height:5rem; " class="d-block" alt="...">
                                 <div class="align-items-center bg-danger bg-opacity-25 d-flex h-100 justify-content-center position-absolute w-100">
                                     <i class="bi bi-trash fs-5"></i>

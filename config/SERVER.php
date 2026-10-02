@@ -1,5 +1,7 @@
 <?php
 
+/*----------  Zona horaria  ----------*/
+date_default_timezone_set("America/Caracas");
 /*----------  Datos del servidor  ----------*/
 const SERVER="localhost";
 const DB="djsander";

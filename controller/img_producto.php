@@ -56,33 +56,24 @@ function validar_imagen_literal($tmp_path, $nombre_original) {
 }
 
 
-function eliminar_imagenes_producto($id_producto, $imgDeleted) {
-    if (empty($imgDeleted)) {
-        return;
+function eliminar_imagenes_producto(int $idImg) {
+
+    $query = mysqli_fetch_assoc(modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id = $idImg"));
+    
+    $img_src = trim($query['img_src']);
+
+    $storage_path = dirname(__DIR__) . '/' . ltrim($img_src, './');
+
+    if (file_exists($storage_path) && is_file($storage_path)) {
+        unlink($storage_path);
     }
 
-    foreach ($imgDeleted as $key => $value) {
-        $query = mysqli_fetch_assoc(modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id_producto = $id_producto AND id = $value"));
-        echo $value;
-        $img_src = trim($query['img_src']);
-        $nombre_archivo = strtolower(basename($img_src));
-
-        if (in_array($nombre_archivo, $imgDeleted, true)) {
-            $storage_path = dirname(__DIR__) . '/' . ltrim($img_src, './');
-
-            if (file_exists($storage_path) && is_file($storage_path)) {
-                unlink($storage_path);
-            }
-
-            modeloPrincipal::DeleteSQL("producto_image", "id = $value");
-        }
-    }
+    modeloPrincipal::DeleteSQL("producto_image", "id = $idImg");
 }
 
 if($modulo == 'Modificar'){
     
     $id_producto = modeloPrincipal::decryptionId($_POST["id"]);
-    $imgDeleted = $_POST['imgDeleted'] ?? '';
     $imgHasProduct = $_POST['imgHasProduct'];
 
     $uploaded_paths = [];
@@ -96,13 +87,6 @@ if($modulo == 'Modificar'){
     }
     
     $producto_actual = mysqli_fetch_array($producto_actual);
-    // imagenes a eliminar
-
-    if (!empty($imgDeleted)) {
-        $imgDeleted = explode(',', $imgDeleted);
-        eliminar_imagenes_producto($id_producto, $imgDeleted);
-    }
-    
     /* 
         seccion mover imagenes al storage local
     */
@@ -157,6 +141,35 @@ if($modulo == 'Modificar'){
         exit();
     } catch (Exception $e) {
         alert_model::alert_mod_error();
+        exit();
+    }
+    
+}
+
+
+
+if($modulo == 'Delete'){
+    
+    $imgId = modeloPrincipal::decryptionId($_POST["id"]);
+
+    $existeImg = modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id = $imgId");
+    
+    if (mysqli_num_rows($existeImg) === 0) {
+        alert_model::alerta_simple("¡Ocurrió un error!","No se encontró la imagen del producto.","error");
+        exit();
+    }
+
+    
+    try {
+        eliminar_imagenes_producto($imgId);
+        echo '<script type="text/javascript"> Toastify({ text: " Se elimino correctamente la imagen.", className: " bi bi-exclamation-triangle-fill text-md]", duration: 3000, }).showToast(); </script>';
+        exit();
+    } catch (Exception $e) {
+
+        echo '<script type="text/javascript">
+                Toastify({ text: " No se pudo eliminar la imágen del producto.", className: "bi bi-exclamation-triangle-fill text-md]", duration: 3000, }).showToast();
+            </script>';
+
         exit();
     }
     
