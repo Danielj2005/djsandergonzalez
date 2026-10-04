@@ -2,7 +2,7 @@
 const PHONE = "5491172041071";
 
 const createCatalogo = (id, nombre, precio, urlImage) =>
-    `<div data-categories="" class="animate-slide-up border border-slate-800 duration-500 group hover:border-purple-500/50 overflow-hidden rounded-3xl dark:shadow-cyan-500/30 shadow-slate-800/30 shadow-xl transition-all product_${id} ">
+    `<div class="animate-slide-up border border-slate-800 duration-500 group hover:border-purple-500/50 overflow-hidden rounded-3xl dark:shadow-cyan-500/30 shadow-slate-800/30 shadow-xl transition-all product_${id} ">
         <div class="relative overflow-hidden cursor-pointer">
             <img src="${urlImage}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
             <div class="absolute bottom-0 flex flex-wrap gap-2 items-center">

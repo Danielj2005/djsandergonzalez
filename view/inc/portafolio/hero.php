@@ -24,6 +24,10 @@
                         <a target="_blank" class="transition btn bg-gradient-to-r from-yellow-500 from-5% hover:from-yellow-700 to-fuchsia-700 to-90% hover:to-fuchsia-900 rounded-full" href="#"><i class="text-white bi bi-instagram"></i></a>
                         <a target="_blank" class="transition btn hover:bg-black/20 bg-black/80 rounded-full" href="#"><i class="hover text-white bi bi-tiktok"></i></a>
                         <a target="_blank" class="transition btn hover:bg-red-900 bg-red-600 rounded-full" href="#"><i class="text-white bi bi-youtube"></i></a>
+                        <a href="./catalogo.php" class="transition hover:bg-blue-500 group btn bg-gray-700/80 rounded-full sm:max-w-[15rem] md:max-w-14">
+                            <i class="group-hover:text-white text-blue-400 bi bi-cart"></i>
+                            <span class="d-block d-md-none text-white">Tienda</span>
+                        </a>
                     </div>
                 </div>
             </div>

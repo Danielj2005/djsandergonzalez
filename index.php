@@ -34,6 +34,10 @@
         <?php require_once './view/inc/portafolio/about_me.php'; ?>
         <!-- /About Section -->
 
+        <!-- shop Section -->
+        <?php require_once './view/inc/portafolio/shop.php'; ?>
+        <!-- /shop Section -->
+
         <!-- services Section -->
         <?php require_once './view/inc/portafolio/service.php'; ?>
         <!-- /services Section -->
