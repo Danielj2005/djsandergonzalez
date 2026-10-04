@@ -126,6 +126,38 @@ class alert_model {
             });
         </script>';
     }
+
+    public static function alert_delete_success(){
+        echo '<script type="text/javascript">
+        
+            Swal.fire({
+                title: "¡Eliminación exitosa!",
+                text: "Los datos se eliminaron correctamente",
+                icon: "success",
+                confirmButtonText: "Aceptar"
+            }).then((result) => {
+                if (result.isConfirmed) {   
+                    location.reload();
+                } else {    
+                    location.reload();
+                } 
+            });
+        </script>';
+    }
+    
+
+    public static function alert_delete_fail(){
+        echo '<script type="text/javascript">
+        
+            Swal.fire({
+                title: "¡Ocurrio un error!",
+                text: "Los datos no se eliminaron, verifique e intente nuevamente",
+                icon: "success",
+                confirmButtonText: "Aceptar"
+            });
+        </script>';
+    }
+    
     
     public static function alert_mod_success_and_close_modal(){
         

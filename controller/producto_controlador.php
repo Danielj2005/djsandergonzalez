@@ -261,18 +261,32 @@ if($modulo === 'Eliminar'){
     // Se verifica que no se hayan recibido campos vacíos.
     modeloPrincipal::validar_campos_vacios([$id_producto]);
 
+    $query = modeloPrincipal::consultar("SELECT img_src FROM producto_image WHERE id_producto = $id_producto");
     // se modifican los datos del producto
     try {
-        $actualizar = producto_model::actualizar_estado(0,$id_producto);
+        while ($img = mysqli_fetch_assoc($query)) {
+            
+            $img_src = trim($img['img_src']);
+        
+            $storage_path = dirname(__DIR__) . '/' . ltrim($img_src, './');
+        
+            if (file_exists($storage_path) && is_file($storage_path)) {
+                unlink($storage_path);
+            }
 
-        if (!$actualizar) {
+        }
+
+
+        $delete = producto_model::delete_producto($id_producto);
+
+        if (!$delete) {
             alert_model::alerta_simple("¡Ocurrió un error!","ocurrio un error al eliminar un producto.","error");
         }
         
-        alert_model::alert_mod_success();
+        alert_model::alert_delete_success();
         exit();
     } catch (Exception $e) {
-        alert_model::alert_mod_error();
+        alert_model::alert_delete_fail();
         exit();
     }
     

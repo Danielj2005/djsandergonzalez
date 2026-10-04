@@ -186,7 +186,7 @@ class producto_model extends modeloPrincipal {
                             <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
                                 <input type="hidden" name="modulo" value="activo">          
                                 <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
-                                <button class="btn btn-danger bi bi-x-circle text-xs" title="estado del producto" type="submit"><?= $mostrar["state"] == 1 ? ' Desactivar' : ' Activar'; ?>  </button>
+                                <button class="btn btn-info bi bi-x-circle text-xs" title="estado del producto" type="submit"><?= $mostrar["state"] == 1 ? ' Desactivar' : ' Activar'; ?>  </button>
                             </form>
                         <?php } else { ?>
                             <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="update_estate" >
@@ -197,6 +197,18 @@ class producto_model extends modeloPrincipal {
                         <?php }  ?>
                     </div>
                 </td>
+
+                <td class="col text-center">
+                    <div class="gap-2 flex flex-col justify-center items-center">
+                        
+                        <form action="../controller/producto_controlador.php" method="post" class="SendFormAjax" data-type-form="delete" >
+                            <input type="hidden" name="modulo" value="Eliminar">          
+                            <input type="hidden" name="id" value="<?= modeloPrincipal::encryptionId($mostrar['id']) ?>">
+                            <button class="btn btn-danger bi bi-trash text-xs" title="estado del producto" type="submit"> </button>
+                        </form>
+                    </div>
+                </td>
+
             </tr>
         <?php } 
     }
@@ -210,4 +222,12 @@ class producto_model extends modeloPrincipal {
         return true;
     }
 
+    public static function delete_producto($id_producto){
+        // se comprueba que no exista un registro con los mismos datos
+
+        if (!modeloprincipal::DeleteSQL("productos", "id = $id_producto")) {
+            return false;
+        }
+        return true;
+    }
 }
