@@ -175,7 +175,7 @@ class model_user extends modeloPrincipal {
         ? "SELECT * FROM users WHERE id != 1 AND role != 1 AND id != $id_usuario ORDER BY full_name ASC"
         : "SELECT * FROM users WHERE id != 1 AND role != 1 AND state = $state AND id != $id_usuario ORDER BY full_name ASC";
         
-        $lista_usuario = modeloPrincipal::consultar($query);
+        $lista_usuario = modeloPrincipal::consultar("SELECT * FROM users WHERE id != 1 AND role != 1 AND id != $id_usuario ORDER BY full_name ASC");
         
         // se imprimen los resultados de la consulta
         while ( $mostrar = mysqli_fetch_array($lista_usuario)) { ?>    
@@ -187,18 +187,15 @@ class model_user extends modeloPrincipal {
 
                 <th scope="col" class="col text-center">
                     <button em_size="modal-md" em_trigger="reg" em_icon="bi-pencil-square " em_url="../api/usuario/editar.php?UID=<?= modeloPrincipal::encryptionId($mostrar["id"]); ?>" em_title="Modificar Usuario" 
-                        type="button" class="em_trigger text-sm btn btn btn-warning" 
+                        type="button" class="rounded-full em_trigger text-sx btn btn btn-warning" 
                         data-bs-toggle="modal" data-bs-target="#em_lists">
-                            <i class="bi bi-pencil-square me-1"></i>
+                            <i class="bi bi-pencil-square"></i>
                     </button>
                 </th>
                 <th scope="col" class="col text-center">
-                    <button class=" text-sm btn <?= ($mostrar["state"] === "1") ? 'btn-success' : 'btn-danger' ?>" 
-                        type="button" 
-                        disabled>
-                        <i class="bi <?= ($mostrar["state"] === "1") ? 'bi-check-circle-fill' : 'bi-x-circle-fill' ?> me-1"></i>
-                    
-                        <?= ($mostrar["state"] === "1") ? 'Activo' : 'Inactivo' ?>
+                    <button class="rounded-full text-xs btn <?= ($mostrar["state"] === "1") ? 'btn-success' : 'btn-danger' ?>" type="button" disabled>
+                        <i class="bi <?= ($mostrar["state"] === "1") ? 'bi-check-circle-fill' : 'bi-x-circle-fill' ?>"></i>
+                        &nbsp;<?= ($mostrar["state"] === "1") ? 'Activo' : 'Inactivo' ?>
                     </button>
                 </th>
             </tr>
