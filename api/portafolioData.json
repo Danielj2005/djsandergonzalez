@@ -1,14 +1,57 @@
 {
+    "contacto":[
+        {
+            "whatsapp": "5491172041071",
+            "correo": "DjsanderG@gmail.com",
+            "instagramUser": "@djsandergonzalez",
+            "instagramLink": "https://www.instagram.com/djsandergonzalez/"
+        },
+        {
+            "type": "whatsapp",
+            "icon": "Una selección musical adaptada al estilo, la energía y los momentos especiales de tu celebración",
+            "forma": "Selección musical personalizada",
+            "title": "Cotizaciones por WhatsApp"
+        },
+        {
+            "type": "instagram",
+            "icon": "Una selección musical adaptada al estilo, la energía y los momentos especiales de tu celebración",
+            "forma": "Selección musical personalizada",
+            "title": "Sígueme en Instagram"
+        }
+    ],
     "service": {
         "1": {
             "nombre": "Musicalización DJ",
-            "subtitle": "Una selección musical adaptada al estilo, la energía y los momentos especiales de tu celebración",
             "incluye": [
                 "Selección musical personalizada",
                 "Equipo de sonido profesional",
                 "Iluminación ambiental",
                 "Animación y coordinación del evento"
-            ]
+            ],
+            "popular": false,
+            "subtitle": "Una selección musical adaptada al estilo, la energía y los momentos especiales de tu celebración"
+        },
+        "2": {
+            "nombre": "Sonido e iluminación",
+            "incluye": [
+                "Musicalización con sonido adecuado para tu celebración.",
+                "Montaje y operación del equipo durante el evento.",
+                "Iluminación para crear una atmósfera más atractiva",
+                "Propuesta ajustada al espacio y formato de tu evento."
+            ],
+            "popular": true,
+            "subtitle": "El ambiente adecuado para que tu evento se escuche y se sienta como merece."
+        },
+        "3": {
+            "nombre": "Experiencia personalizada",
+            "incluye": [
+                "Reunión previa para conocer el concepto y las necesidades del evento.",
+                "Selección musical alineada con tus gustos y el perfil de tus invitados.",
+                "Atención para celebraciones sociales y eventos especiales.",
+                "Acompañamiento para coordinar la dinámica musical del evento."
+            ],
+            "popular": false,
+            "subtitle": "Planificamos la música y el ritmo de tu evento para convertirlo en un recuerdo especial."
         }
     },
     "contact": {
@@ -17,9 +60,9 @@
         "whatsapp": "https://api.whatsapp.com/send?phone=5491172041071&text=Hola%20DjSanderGonzalez,%20quiero%20cotizar%20la%20musicalizaci%C3%B3n%20de%20mi%20evento."
     },
     "about": {
-        "img": "./view/img/djsander.webp",
-        "slogan": "La música es el corazón de cada celebración. Me encargaré de crear el ambiente adecuado para que tu evento tenga ritmo, energía y momentos inolvidables.",
         "subtitle": "Lo que puedes esperar",
+        "slogan": "La música es el corazón de cada celebración. Me encargaré de crear el ambiente adecuado para que tu evento tenga ritmo, energía y momentos inolvidables.",
+        "img": "./view/img/djsander.jpg",
         "incluye": [
             "Musicalización adaptada al estilo de tu evento.",
             "Repertorio pensado para tus gustos y los de tus invitados.",
@@ -33,32 +76,33 @@
         ]
     },
     "hero": {
+        "section": "Portada Principal",
+        "inputName": ["Título","Subtitulo","Logo","Imagen de fondo","Redes sociales"],
+        "logo": "./view/img/logo.webp",
+        "bg-img": "./view/img/djsander2.webp",
         "title": "I'm DJ for +6 years | Content Creator",
         "subtitle": "Events | Bars | Private Party`s",
-        "bg-img": "./view/img/djsander2.webp",
         "social": [
             {
-                "name": "whatsapp",
-                "url": "https://api.whatsapp.com/send?phone=5491172041071&text=Hola%20DjSanderGonzalez,%20quiero%20cotizar%20la%20musicalizaci%C3%B3n%20de%20mi%20evento."
+                "url": "https://api.whatsapp.com/send?phone=5491172041071&text=Hola%20DjSanderGonzalez,%20quiero%20cotizar%20la%20musicalizaci%C3%B3n%20de%20mi%20evento.",
+                "name": "whatsapp"
             },
             {
-                "name": "facebook",
-                "url": "https://www.facebook.com/profile.php?id=100067453665057"
+                "url": "https://www.facebook.com/profile.php?id=100067453665057",
+                "name": "facebook"
             },
             {
-                "name": "instagram",
-                "url": "https://www.instagram.com/djsandergonzalez/"
+                "url": "https://www.instagram.com/djsandergonzalez/",
+                "name": "instagram"
             },
             {
-                "name": "tiktok",
-                "url": "https://www.tiktok.com/@djsandergonzalez"
+                "url": "https://www.tiktok.com/@djsandergonzalez",
+                "name": "tiktok"
             },
             {
-                "name": "youtube",
-                "url": "http://www.youtube.com/@DjSanderGonzalezOficial"
+                "url": "http://www.youtube.com/@DjSanderGonzalezOficial",
+                "name": "youtube"
             }
         ]
-    },
-    "logo": "./view/img/logo.webp"
-
+    }
 }

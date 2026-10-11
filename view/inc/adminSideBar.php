@@ -3,16 +3,16 @@
     <ul id="sidebar-nav" class="sidebar-nav">
         <!-- apartado de página principal -->
         <li class="nav-item ">
-            <a class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 dark:text-slate-300 flex gap-2 hover:bg-slate-600 p-2 rounded-3 shadow-md" href="./">
-                <i class="bi bi-speedometer2"></i>
-                <span>Panel de Control</span>
+            <a class="bg-[#f6f9ff] dark:text-slate-300 text-gray-700 dark:bg-slate-800 dark:shadow-slate-300/80 flex gap-2 hover:bg-gray-400 dark:hover:bg-slate-500 p-2 rounded-3 shadow-md" href="./">
+                <i class="text-slate-700 dark:text-slate-300 bi bi-speedometer2"></i>
+                <span class="text-slate-700 dark:text-slate-300">Panel de Control</span>
             </a>
         </li>
 
         <li class="nav-item position-relative">
             <details class="group">
                 <!-- Encabezado / Botón disparador -->
-                <summary class=" bg-[#f6f9ff] dark:bg-slate-800 justify-between dark:shadow-slate-300/80 dark:text-slate-300 gap-2 rounded-3 shadow-md flex items-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors list-none [&::-webkit-details-marker]:hidden">
+                <summary class=" bg-[#f6f9ff] dark:bg-slate-800 justify-between dark:shadow-slate-300/80 dark:text-slate-300 gap-2 rounded-3 shadow-md flex items-center p-2 text-gray-700 hover:bg-gray-400 dark:hover:bg-slate-500 rounded-lg cursor-pointer transition-colors list-none [&::-webkit-details-marker]:hidden">
                     <div class="flex items-center space-x-3">
                     <i class="bi bi-box-seam-fill"></i>
                     <span>Inventario</span>
@@ -77,7 +77,7 @@
         <li class="nav-item position-relative">
             <details class="group">
                 <!-- Encabezado / Botón disparador -->
-                <summary class=" bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 dark:text-slate-300 gap-2 rounded-3 shadow-md flex items-center justify-between p-2 text-gray-700 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors list-none [&::-webkit-details-marker]:hidden">
+                <summary class=" bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 dark:text-slate-300 gap-2 rounded-3 shadow-md flex items-center justify-between p-2 text-gray-700 hover:bg-gray-400 dark:hover:bg-slate-500 rounded-lg cursor-pointer transition-colors list-none [&::-webkit-details-marker]:hidden">
                     <div class="flex items-center space-x-3">
                     <i class="bi bi-people-fill"></i>
                     <span>Gestión de Usuarios</span>
@@ -117,10 +117,15 @@
             </details>
         </li>
 
+        <!-- apartado del portafolio de usuario  -->
+        <li class="nav-item ">
+            <a class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 flex gap-2 hover:bg-gray-400 dark:hover:bg-slate-500 p-2 rounded-3 shadow-md" href="./portafolio.php"> <i class="text-slate-700 dark:text-slate-300 bi bi-person-fill"></i> <span class="text-slate-700 dark:text-slate-300 ">Portafolio DjsanderGonzalez</span> </a>
+        </li>
         <!-- apartado del perfil de usuario  -->
         <li class="nav-item ">
-            <a class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 dark:text-slate-300 flex gap-2 hover:bg-slate-600 p-2 rounded-3 shadow-md" href="./mi_perfil.php"> <i class="bi bi-person-fill"></i> <span>Mi Perfil</span> </a>
+            <a class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 flex gap-2 hover:bg-gray-400 dark:hover:bg-slate-500 p-2 rounded-3 shadow-md" href="./mi_perfil.php"> <i class="text-slate-700 dark:text-slate-300 bi bi-person-fill"></i> <span class="text-slate-700 dark:text-slate-300 ">Mi Perfil</span> </a>
         </li>
+
 
         <li class="nav-item position-relative d-none">
             <a class="nav-link collapsed" data-bs-target="#setting-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-gear-fill"></i> <span>Configuración General</span> <i class="bi bi-chevron-down ms-auto"></i> </a>
@@ -143,6 +148,6 @@
             </ul>
         </li>
 
-        <li class="nav-item"> <button class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 dark:text-slate-300 flex gap-2 hover:bg-slate-600 p-2 rounded-3 shadow-md btn-exit-system"> <i class="bi bi-box-arrow-right"></i> <span>Cerrar Sesión</span> </button> </li>
+        <li class="nav-item"> <button class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 dark:text-slate-300 flex gap-2 hover:bg-gray-400 dark:hover:bg-slate-500 p-2 rounded-3 shadow-md btn-exit-system"> <i class="bi bi-box-arrow-right"></i> <span>Cerrar Sesión</span> </button> </li>
     </ul>
 </aside>
