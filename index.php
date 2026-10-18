@@ -1,4 +1,7 @@
-<?php require_once "./config/SERVER.php"; ?>
+<?php 
+require_once "./config/SERVER.php"; 
+require_once "./model/mainModel.php"; 
+?>
 
 <!DOCTYPE html>
 <html lang="es" class="dark">
@@ -52,8 +55,20 @@
         
     </main>
     <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div class="bg-slate-800/60 d-md-none fixed-bottom flex gap-2 h-24 items-center justify-around mt-2 right-0 w-full">
+        
+        <a href="./catalogo.php" class="bg-gray-700/80 btn flex group h-20 hover:bg-blue-500 items-center justify-center p-3 rounded-full transition w-20">
+            <i class="group-hover:text-white text-blue-400 bi bi-cart"></i>
+        </a> 
 
+        <a href="#hero" class="bg-gray-700/80 btn flex group h-20 hover:bg-blue-500 items-center justify-center p-3 rounded-full transition w-20">
+            <i class="group-hover:text-white bi bi-house navicon"></i>
+        </a>
+
+        <a id="lightModeButton" class="bg-gray-700/80 btn flex group h-20 hover:bg-blue-500 items-center justify-center p-3 rounded-full transition w-20">
+            <i class="text-amber-400 bi bi-sun-fill navicon"></i>
+        </a>
+    </div>
     <!-- Preloader -->
     <div id="preloader"></div>
 

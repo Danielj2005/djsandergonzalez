@@ -10,51 +10,6 @@ require_once "../model/productModel.php"; // se incluye el model de categorias
 // modulo a trabajar
 $modulo = modeloprincipal::limpiar_cadena($_POST["modulo"]);
 
-function validar_imagen_literal($tmp_path, $nombre_original) {
-    if (!is_file($tmp_path)) {
-        return false;
-    }
-
-    $extension = strtolower(pathinfo($nombre_original, PATHINFO_EXTENSION));
-    $ext_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
-
-    if (!in_array($extension, $ext_permitidas, true)) {
-        return false;
-    }
-
-    $info = @getimagesize($tmp_path);
-    if ($info === false) {
-        return false;
-    }
-
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime = $finfo ? finfo_file($finfo, $tmp_path) : null;
-    if ($finfo) {
-        finfo_close($finfo);
-    }
-
-    $mimes_permitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp', 'image/x-windows-bmp'];
-    if ($mime === false || $mime === null || !in_array($mime, $mimes_permitidos, true)) {
-        return false;
-    }
-
-    if (strtolower($extension) === 'svg') {
-        return false;
-    }
-
-    $contenido = @file_get_contents($tmp_path, false, null, 0, 4096);
-    if ($contenido === false) {
-        return false;
-    }
-
-    $contenido_min = strtolower($contenido);
-    if (str_contains($contenido_min, '<script') || str_contains($contenido_min, '<?php') || str_contains($contenido_min, '<svg') || str_contains($contenido_min, 'javascript:')) {
-        return false;
-    }
-
-    return true;
-}
-
 
 function eliminar_imagenes_producto(int $idImg) {
 
@@ -95,7 +50,7 @@ if($modulo == 'Modificar'){
         $files = $_FILES['image'];
         foreach ($files['tmp_name'] as $key => $tmp_name) {
             if ($files['error'][$key] === 0 && is_uploaded_file($tmp_name)) {
-                if (!validar_imagen_literal($tmp_name, $files['name'][$key])) {
+                if (!modeloPrincipal::validar_imagen_literal($tmp_name, $files['name'][$key])) {
                     continue;
                 }
 

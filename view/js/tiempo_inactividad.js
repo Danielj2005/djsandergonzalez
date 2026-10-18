@@ -16,7 +16,7 @@ function detectar_actividad() {
 
         const tiempo_advertencia = 30000;
         
-        DanikatAlert.fire({
+        Swal.fire({
             title: '¡Sesión por expirar!',
             html: `Se cerrará tu sesión por inactividad en <b></b> segundos.`,
             icon: 'warning',

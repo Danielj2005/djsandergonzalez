@@ -230,4 +230,37 @@ class producto_model extends modeloPrincipal {
         }
         return true;
     }
+
+    
+    public static function add_productImg(array $files){
+        
+        foreach ($files['tmp_name'] as $key => $tmp_name) {
+            if ($files['error'][$key] === 0 && is_uploaded_file($tmp_name)) {
+                if (!validar_imagen_literal($tmp_name, $files['name'][$key])) {
+                    continue;
+                }
+
+                $file_hash = md5_file($tmp_name);
+
+                if ($file_hash === false) {
+                    continue;
+                }
+
+                // Obtenemos la extensión del nombre original (ej: "foto.JPG" -> "jpg")
+                $extension = strtolower(pathinfo($files['name'][$key], PATHINFO_EXTENSION));
+
+                $name = $file_hash . "." . $extension;
+
+                $target = "../storage/$name";
+                
+                if (move_uploaded_file($tmp_name, $target)) {
+                    $target = "./storage/$name";
+
+                    $uploaded_paths[] = $target;
+                    $uploaded_hashes[] = $file_hash;
+                }
+            }
+        }
+        return true;
+    }
 }
