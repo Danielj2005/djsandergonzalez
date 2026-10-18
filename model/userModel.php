@@ -169,11 +169,8 @@ class model_user extends modeloPrincipal {
 
     //  Funcion para pedir una lista de empleados del negocio 
 
-    public static function lista_de_usuarios($state = 1) {
+    public static function lista_de_usuarios() {
         $id_usuario = $_SESSION['dataUser']['id']; // se obtiene el id del usuario que inicio sesion
-        $query = $state == 2 
-        ? "SELECT * FROM users WHERE id != 1 AND role != 1 AND id != $id_usuario ORDER BY full_name ASC"
-        : "SELECT * FROM users WHERE id != 1 AND role != 1 AND state = $state AND id != $id_usuario ORDER BY full_name ASC";
         
         $lista_usuario = modeloPrincipal::consultar("SELECT * FROM users WHERE id != 1 AND role != 1 AND id != $id_usuario ORDER BY full_name ASC");
         

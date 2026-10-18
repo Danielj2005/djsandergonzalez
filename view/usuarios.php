@@ -5,6 +5,7 @@ session_start();
 require_once "../config/SERVER.php";
 require_once "../model/mainModel.php"; // se incluye el model principal
 require_once "../model/userModel.php"; 
+
 // Obtener el user agent del cliente
 $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
@@ -37,7 +38,7 @@ $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 						<i class="bi bi-chevron-left"></i> 
 						<span>Volver al Panel Principal</span>
 					</a>
-					<h1 class="dark:text-slate-400 text-center fs-1 my-1">Gestión de Usuarios</h1>
+					<h1 class="dark:text-slate-400 text-center fs-1 my-1">Gestión de Usuarios </h1>
 				</div>
 
 				<section class="section dashboard">
@@ -64,12 +65,12 @@ $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 												<th class="text-center col" scope="col">Nombre y Apellido</th>
 												<th class="text-center col" scope="col">Correo</th>
 												<th class="text-center col" scope="col">Teléfono</th>
-												<th scope="col" class="text-center col">Modificar</th>
-												<th scope="col" class="text-center col">Estado</th>
+												<th class="text-center col" scope="col">Modificar</th>
+												<th class="text-center col" scope="col">Estado</th>
 											</tr>
 										</thead>
 										<tbody>
-											<?php model_user::lista_de_usuarios(2); ?>  
+											<?php model_user::lista_de_usuarios(); ?>  
 										</tbody>
 									</table>
 								</div>
@@ -91,7 +92,7 @@ $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 										while ($mostrar = mysqli_fetch_assoc($catalogo)) { ?>
 
 
-											<div class="bg-[#f6f9ff] mb-3 animate-slide-up border border-slate-800 duration-500 group hover:border-purple-500/50 overflow-hidden rounded-2xl dark:shadow-cyan-500/30 shadow-slate-800/30 shadow-xl transition-all">
+											<div class="bg-[#f6f9ff] dark:bg-slate-800 mb-3 animate-slide-up border border-slate-800 duration-500 group hover:border-purple-500/50 overflow-hidden rounded-2xl dark:shadow-cyan-500/30 shadow-slate-800/30 shadow-xl transition-all">
 												
 												<div class="p-3">
 													<div class="text-start mb-2 flex items-center justify-between">

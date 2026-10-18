@@ -1,5 +1,3 @@
-
-
 <li class="d-none ">
     <a href="login.php" class="group bg-gray-700/80 rounded-full sm:max-w-[15rem] md:max-w-14">
         <i class="group-hover:text-white text-gray-400 bi bi-person-circle navicon"></i>

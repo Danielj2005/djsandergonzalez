@@ -1,4 +1,15 @@
 
+<?php 
+$query = mysqli_fetch_array(modeloPrincipal::consultar("SELECT 
+    (SELECT url FROM `contacto` WHERE id = 2) as correo ,
+    (SELECT url FROM `contacto` WHERE id = 3) as ws,
+    (SELECT url FROM `contacto` WHERE id = 4) as ig,
+    (SELECT url FROM `contacto` WHERE id = 5) as ig_user
+    FROM `contacto` limit 1")); 
+    
+?>
+
+
 <section id="contact" class="contact section dark:bg-gray-900 pb-2 bg-gray-400/20 ">
 
     <div class="container section-title" data-aos="fade-up">
@@ -16,7 +27,7 @@
                     <div class="">
 
                         <h3 class="dark:text-white group-hover:text-blue-700">Consultas y reservas</h3>
-                        <a class="text-blue-700 dark:group-hover:text-white" href="mailto:DjsanderG@gmail.com">DjsanderG@gmail.com</a>
+                        <a class="text-blue-700 dark:group-hover:text-white" href="mailto:<?= $query['correo'] ?>"><?= $query['correo'] ?></a>
                     </div>                    
                 </div>
             </div>
@@ -29,7 +40,7 @@
                         <a class="group-hover:text-green-500 text-green-500 dark:group-hover:text-white" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            href="https://api.whatsapp.com/send?phone=<?= PHONE ?>&text=Hola%20DjSanderGonzalez,%20quiero%20cotizar%20la%20musicalizaci%C3%B3n%20de%20mi%20evento."> Escríbeme
+                            href="https://api.whatsapp.com/send?phone=<?= $query['ws'] ?>&text=Hola%20DjSanderGonzalez,%20quiero%20cotizar%20la%20musicalizaci%C3%B3n%20de%20mi%20evento."> Escríbeme por WhatsApp
                         </a>
                     </div>                    
                 </div>
@@ -43,7 +54,7 @@
                         <a class="group-hover:text-pink-500 text-pink-500 dark:group-hover:text-white"
                             target="_blank"
                             rel="noopener noreferrer"
-                            href="https://www.instagram.com/djsandergonzalez/">@djsandergonzalez
+                            href="<?= $query['ig'] ?>"><?= $query['ig_user'] ?>
                         </a>
                     </div>
                 </div>

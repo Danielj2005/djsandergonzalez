@@ -1,14 +1,17 @@
+
+<?php
+
+$logo = mysqli_fetch_array(modeloPrincipal::consultar("SELECT logo FROM hero where id = 1"))['logo'];
+
+?>
 <header id="header" class="header fixed-top d-flex align-items-center dark:bg-slate-800 dark:shadow-sm dark:shadow-slate-300/20">
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="./" class="logo d-flex align-items-center">
-      <img src="img/ce9abf00f5498e45b7140862f8fa327b.webp" alt="logo djsandergonzalez"  class="bg-gray-200 img-fluid rounded-circle w-[15rem]" >
+      <img src="<?= $logo ?>" alt="logo djsandergonzalez"  class="bg-gray-200 img-fluid rounded-circle w-[15rem]" >
       <span class="d-none d-lg-block dark:text-slate-400"><?= COMPANY ?></span>
     </a>
     <i class="dark:text-slate-400 bi bi-list toggle-sidebar-btn"></i>
-    <?php //if ($_SESSION['dataUsuario']["primer_inicio"] == '0') { ?>
-    <?php //} ?>
-
   </div>
 
 

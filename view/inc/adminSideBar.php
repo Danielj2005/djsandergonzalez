@@ -1,3 +1,4 @@
+
 <aside id="sidebar" class="sidebar dark:bg-slate-800 dark:shadow-md dark:shadow-slate-300">
 
     <ul id="sidebar-nav" class="sidebar-nav">
@@ -119,7 +120,7 @@
 
         <!-- apartado del portafolio de usuario  -->
         <li class="nav-item ">
-            <a class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 flex gap-2 hover:bg-gray-400 dark:hover:bg-slate-500 p-2 rounded-3 shadow-md" href="./portafolio.php"> <i class="text-slate-700 dark:text-slate-300 bi bi-person-fill"></i> <span class="text-slate-700 dark:text-slate-300 ">Portafolio DjsanderGonzalez</span> </a>
+            <a class="bg-[#f6f9ff] dark:bg-slate-800 dark:shadow-slate-300/80 flex gap-2 hover:bg-gray-400 dark:hover:bg-slate-500 p-2 rounded-3 shadow-md" href="./portafolio.php"> <i class="text-slate-700 dark:text-slate-300 bi bi-person-fill"></i> <span class="text-slate-700 dark:text-slate-300 ">Portafolio</span> </a>
         </li>
         <!-- apartado del perfil de usuario  -->
         <li class="nav-item ">
